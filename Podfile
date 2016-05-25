@@ -7,4 +7,6 @@ target 'xBeacon' do
 
   # Pods for xBeacon
   pod 'Firebase'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
 end
