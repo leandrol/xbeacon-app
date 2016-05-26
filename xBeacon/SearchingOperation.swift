@@ -69,6 +69,7 @@ class SearchingOperation: BeaconOperation {
     func startSearchingForBeacons() {
         activateLocationManagerNotifications()
         
+        /*
         //Monitoring
         print("Turning on monitoring...")
         
@@ -93,6 +94,7 @@ class SearchingOperation: BeaconOperation {
         case .NotDetermined:
             locationManager.requestAlwaysAuthorization()
         }
+        */
         
         
         //Advertising
@@ -253,7 +255,12 @@ extension SearchingOperation
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        delegate?.rangingOperationDidRangeBeacons(beacons, inRegion: region)
+        //delegate?.rangingOperationDidRangeBeacons(beacons, inRegion: region)
+        //print("Found beacon.")
+        //print("Count: \(beacons.count)")
+        for beacon in beacons as! [CLBeacon] {
+            print("Beacon \(beacon): \(beacon.major) \(beacon.minor)")
+        }
     }
 }
 

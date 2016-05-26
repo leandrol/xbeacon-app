@@ -6,5 +6,5 @@ target 'xBeacon' do
   use_frameworks!
 
   # Pods for xBeacon
-  pod 'Firebase'
+  pod 'Firebase', '>= 2.5.1'
 end

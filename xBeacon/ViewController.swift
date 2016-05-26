@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     
     // Operation vars
     private var searchingOperation = SearchingOperation()
+    
+    // Array of detected beacons
+    private var detectedBeacons = [CLBeacon]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +73,7 @@ extension ViewController: SearchingOperationDelegate {
      Triggered when the monitoring operation has failed to start.
      */
     func monitoringOperationDidFailToStart() {
-        
+        self.searchingSwitch.on = false
     }
     
     /**
@@ -91,7 +94,7 @@ extension ViewController: SearchingOperationDelegate {
      Triggered when the ranging operation has failed to start.
      */
     func rangingOperationDidFailToStart() {
-        
+        self.searchingSwitch.on = false
     }
     
     /**
@@ -123,10 +126,16 @@ extension ViewController: SearchingOperationDelegate {
      :param: region A provided region whose beacons the operation is trying to range.
      */
     func rangingOperationDidRangeBeacons(beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        for beacon in beacons as! [CLBeacon] {
-            print("Beacon: " + String(beacon.major) + " " + String(beacon.minor))
+        self.detectedBeacons = beacons as! [CLBeacon]
+        for beacon in detectedBeacons {
+            print("Beacon: \(beacon.major) \(beacon.minor)")
         }
-    
+        
+        /*
+        for beacon in beacons as! [CLBeacon] {
+            print("Beacon: \(beacon.major) \(beacon.minor)")
+        }
+        */
     }
 }
 

@@ -14,6 +14,7 @@ class BeaconOperation: NSObject, CLLocationManagerDelegate
 {
   /// An instance of CLLocationManager to provide monitoring and ranging facilities.
   lazy var locationManager: CLLocationManager = CLLocationManager()
+    
   
   /// The beacon region that will be used as the reference for monitoring and ranging.
   let beaconRegion: CLBeaconRegion = {
@@ -28,5 +29,6 @@ class BeaconOperation: NSObject, CLLocationManagerDelegate
    */
   func activateLocationManagerNotifications() {
     locationManager.delegate = self
+    self.locationManager.allowsBackgroundLocationUpdates = true
   }
 }
