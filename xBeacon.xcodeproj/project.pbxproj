@@ -240,9 +240,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				B5AAEF011CF7A9F600A6B03E /* ViewController.swift in Sources */,
 				B56384081CF4FEE7003B3832 /* SearchingOperation.swift in Sources */,
 				D5DDE7021CF4F05D0020286B /* LoginViewController.swift in Sources */,
+=======
+>>>>>>> f4e94533c69505ecac49dbfcfece3914844cd15a
 				D5DDE7021CF4F05D0020286B /* LoginViewController.swift in Sources */,
 				D5DDE7001CF4F05D0020286B /* AppDelegate.swift in Sources */,
 				B56384061CF4F64A003B3832 /* BeaconOperation.swift in Sources */,
