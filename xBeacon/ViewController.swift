@@ -9,11 +9,29 @@
 import Foundation
 import UIKit
 import CoreLocation
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class ViewController: UIViewController {
   
     // Actions
     @IBOutlet weak var searchingSwitch: UISwitch!
+    
+    @IBOutlet weak var logoutButton: UIButton!
+    
+    //UI Functions
+    @IBAction func logoutButtonPressed(sender: AnyObject) {
+        try! FIRAuth.auth()!.signOut()
+        
+        FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
+            if let user = user {
+                print("User is signed in with uid:", user.uid)
+            } else {
+                print("No user is signed in.")
+            }
+        }
+    }
     
     // Operation vars
     private var searchingOperation = SearchingOperation()

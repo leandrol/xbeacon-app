@@ -137,19 +137,30 @@
                                     <action selector="switchChanged:" destination="uf3-UE-VdC" eventType="valueChanged" id="ZQd-jN-Hdt"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlx-DM-r00">
+                                <rect key="frame" x="247" y="431" width="106" height="57"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="uf3-UE-VdC" eventType="touchUpInside" id="sm2-2K-naa"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="a2E-ws-TWh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="urz-Dr-dF4" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="DZ2-Gz-dVM"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="Jci-QR-Gnv"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="logoutButton" destination="nlx-DM-r00" id="gyG-U7-HWB"/>
                         <outlet property="searchingSwitch" destination="urz-Dr-dF4" id="TP3-65-KZJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ktr-ql-hmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="96"/>
+            <point key="canvasLocation" x="868" y="56"/>
         </scene>
     </scenes>
 </document>
