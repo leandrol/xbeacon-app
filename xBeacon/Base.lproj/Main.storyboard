@@ -128,11 +128,11 @@
                         <viewControllerLayoutGuide type="bottom" id="1xL-YQ-80O"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4rc-5F-QPx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="urz-Dr-dF4">
-                                <rect key="frame" x="163" y="289" width="51" height="31"/>
+                                <rect key="frame" x="275" y="289" width="51" height="31"/>
                                 <connections>
                                     <action selector="switchChanged:" destination="uf3-UE-VdC" eventType="valueChanged" id="ZQd-jN-Hdt"/>
                                 </connections>
@@ -143,7 +143,6 @@
                             <constraint firstItem="urz-Dr-dF4" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="DZ2-Gz-dVM"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="searchingSwitch" destination="urz-Dr-dF4" id="TP3-65-KZJ"/>
                     </connections>
