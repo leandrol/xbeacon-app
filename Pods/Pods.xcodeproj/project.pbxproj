@@ -33,7 +33,6 @@
 		B78F0BB8F91A09B22CF7A418CE2798FD /* Pods-xBeacon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-xBeacon.release.xcconfig"; sourceTree = "<group>"; };
 		C31FFD0A23EE8AD6A4A80E601404B7AD /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = Frameworks/GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
 		C50B10F86ED8FD0A620FA783793E4CA1 /* Pods-xBeacon.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-xBeacon.modulemap"; sourceTree = "<group>"; };
-		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		DE90693BCF316719EF9B4861AEB3DB96 /* Pods-xBeacon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-xBeacon.debug.xcconfig"; sourceTree = "<group>"; };
 		F33C61A5B7FAC802468634807090F9BD /* Pods-xBeacon-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-xBeacon-frameworks.sh"; sourceTree = "<group>"; };
 		F9024C3BBA482CF1F932679240117C02 /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = Frameworks/FirebaseAuth.framework; sourceTree = "<group>"; };
@@ -58,6 +57,14 @@
 				AC6C1C6FF6702D0FA5C53F584FEBBD8C /* Frameworks */,
 			);
 			path = FirebaseInstanceID;
+			sourceTree = "<group>";
+		};
+		112C7921E3A497328D11F4930CBBC9CA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		2BB5EE13E909A344173DF7E59C5F78C3 /* Frameworks */ = {
@@ -124,14 +131,6 @@
 				74CAB10AD49E7A0040D4EE0BC675DD48 /* Pods_xBeacon.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		47561DC6E6F905E76B8C7B7FDAF5F2FD /* Frameworks */ = {
@@ -228,7 +227,7 @@
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+				112C7921E3A497328D11F4930CBBC9CA /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
