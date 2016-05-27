@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -26,9 +27,25 @@ class LoginViewController: UIViewController {
     }
     
     // Actions
-    @IBAction func loginDidTouch(sender: AnyObject) {
-        
+    @IBAction func dismissKeyboard(sender: AnyObject) {
+        view.endEditing(true)
     }
+    
+    @IBAction func loginDidTouch(sender: AnyObject) {
+        FIRAuth.auth()?.signInWithEmail(textFieldLoginEmail.text!, password: textFieldLoginPassword.text!) { (user, error) in
+            
+            if error == nil {
+                // Go to main screen
+            }
+            
+        }
+        
+        
+
+    }
+    
+    // Creating a new user to Firebase
+    
     
     @IBAction func signUpDidTouch(sender: AnyObject) {
         let alert = UIAlertController(title: "Register",
@@ -37,7 +54,17 @@ class LoginViewController: UIViewController {
         
         let saveAction = UIAlertAction(title: "Save",
                                        style: .Default) { (action: UIAlertAction) -> Void in
+                                        let emailField = alert.textFields![0]
+                                        let passwordField = alert.textFields![1]
                                         
+                                        FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!) { (user, error) in
+                                            if error == nil {
+                                                FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
+                                                    
+                                                    //Go to edit profile
+                                                }
+                                            }
+                                        }
                                         
                                         
         }
