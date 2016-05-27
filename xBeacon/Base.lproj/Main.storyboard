@@ -69,6 +69,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gyd-WW-LXt"/>
+                                    <segue destination="uf3-UE-VdC" kind="presentation" identifier="Login" id="WkN-si-3Tk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -117,6 +118,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="70" y="96"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Kfd-6U-hCJ">
+            <objects>
+                <viewController id="uf3-UE-VdC" customClass="ViewController" customModule="xBeacon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="061-bs-gZN"/>
+                        <viewControllerLayoutGuide type="bottom" id="1xL-YQ-80O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4rc-5F-QPx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="urz-Dr-dF4">
+                                <rect key="frame" x="276" y="284" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchChanged:" destination="uf3-UE-VdC" eventType="valueChanged" id="ZQd-jN-Hdt"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchingSwitch" destination="urz-Dr-dF4" id="TP3-65-KZJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ktr-ql-hmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="96"/>
         </scene>
     </scenes>
 </document>

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     // Constants
@@ -36,17 +37,17 @@ class LoginViewController: UIViewController {
             
             if error == nil {
                 // Go to main screen
+                self.performSegueWithIdentifier("Login", sender: self)
+            }
+            else {
+                
             }
             
         }
-        
-        
 
     }
     
     // Creating a new user to Firebase
-    
-    
     @IBAction func signUpDidTouch(sender: AnyObject) {
         let alert = UIAlertController(title: "Register",
                                       message: "Register for an xBeacon account.",
