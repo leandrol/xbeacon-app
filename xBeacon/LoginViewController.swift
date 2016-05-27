@@ -8,10 +8,11 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
     // Constants
-    
+    var rootRef = FIRDatabase.database().reference()
     // Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
@@ -36,8 +37,18 @@ class LoginViewController: UIViewController {
         FIRAuth.auth()?.signInWithEmail(textFieldLoginEmail.text!, password: textFieldLoginPassword.text!) { (user, error) in
             
             if error == nil {
+                
+                FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
+                    if let user = user {
+                        print("User is signed in with uid:", user.uid)
+                    } else {
+                        print("No user is signed in.")
+                    }
+                }
+                
                 // Go to main screen
                 self.performSegueWithIdentifier("Login", sender: self)
+                
             }
             else {
                 
@@ -60,10 +71,22 @@ class LoginViewController: UIViewController {
                                         
                                         FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!) { (user, error) in
                                             if error == nil {
-                                                FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
-                                                    
-                                                    //Go to edit profile
+                                                
+                                                FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
+                                                    if let user = user {
+                                                        print("User is signed in with uid:", user.uid)
+                                                    } else {
+                                                        print("No user is signed in.")
+                                                    }
                                                 }
+                                                
+                                                //Setup major minor for this user
+                                                
+                                                FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
+                                                }
+                                                
+                                                self.performSegueWithIdentifier("Login", sender: self)
+
                                             }
                                         }
                                         
