@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 import CoreLocation
 import CoreBluetooth
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 protocol SearchingOperationDelegate {
+    
     /**
     Triggered when the searching operation has started successfully.
     */
@@ -57,12 +61,11 @@ protocol SearchingOperationDelegate {
 }
 
 class SearchingOperation: BeaconOperation {
-    
     var delegate: SearchingOperationDelegate?
     
     /// An instance of a CBPeripheralManager, which is used for advertising a beacon to nearby devices.
     var peripheralManager = CBPeripheralManager(delegate: nil, queue: nil, options: nil)
-    
+
     /**
         Starts the beacon searching process.
     */
@@ -149,14 +152,32 @@ class SearchingOperation: BeaconOperation {
     }
     
     func turnOnAdvertising() {
-        let major: CLBeaconMajorValue = CLBeaconMajorValue(arc4random_uniform(5000))
-        let minor: CLBeaconMinorValue = CLBeaconMajorValue(arc4random_uniform(5000))
-        let region: CLBeaconRegion = CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: major, minor: minor, identifier: beaconRegion.identifier)
-        let beaconPeripheralData: NSDictionary = region.peripheralDataWithMeasuredPower(nil) as NSDictionary
         
-        peripheralManager.startAdvertising(beaconPeripheralData as? [String : AnyObject])
+        let rootRef = FIRDatabase.database().reference()
         
-        print("Turning on advertising for region: \(region).")
+        //profile for user
+        let profileRef = rootRef.child("profile")
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        profileRef.child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            let majorValue = snapshot.value!["Major"] as! Int
+            let minorValue = snapshot.value!["Minor"] as! Int
+            
+            let major: CLBeaconMajorValue = CLBeaconMajorValue(majorValue)
+            let minor: CLBeaconMinorValue = CLBeaconMajorValue(minorValue)
+            let region: CLBeaconRegion = CLBeaconRegion(proximityUUID: self.beaconRegion.proximityUUID, major: major, minor: minor, identifier: self.beaconRegion.identifier)
+            let beaconPeripheralData: NSDictionary = region.peripheralDataWithMeasuredPower(nil) as NSDictionary
+            
+            self.peripheralManager.startAdvertising(beaconPeripheralData as? [String : AnyObject])
+            
+            print("Turning on advertising for region: \(region).")
+            
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+
+        
     }
     
     func turnOnRanging() {
@@ -259,7 +280,33 @@ extension SearchingOperation
         //print("Found beacon.")
         //print("Count: \(beacons.count)")
         for beacon in beacons as! [CLBeacon] {
-            print("Beacon \(beacon): \(beacon.major) \(beacon.minor)")
+            //print("Beacon \(beacon): \(beacon.major) \(beacon.minor)")
+            let majorminorKey = String(beacon.major) + " " + String(beacon.minor)
+            let rootRef = FIRDatabase.database().reference()
+            //setup ref profile
+            let majorminorRef = rootRef.child("majorminor")
+            
+            
+            
+
+            //Right now just prints the uid, but can use the uid with the profile db to get name/fb/etc
+            majorminorRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                // Get user value
+                if(snapshot.hasChild(majorminorKey)){
+                    let foundUserID = snapshot.value![majorminorKey] as! String
+                    print("This is a user whose uid is: " + foundUserID)
+                
+                }
+                
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+            
+            
+            
+            
+            
+            
         }
     }
 }

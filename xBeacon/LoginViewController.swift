@@ -38,14 +38,6 @@ class LoginViewController: UIViewController {
             
             if error == nil {
                 
-                FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
-                    if let user = user {
-                        print("User is signed in with uid:", user.uid)
-                    } else {
-                        print("No user is signed in.")
-                    }
-                }
-                
                 // Go to main screen
                 self.performSegueWithIdentifier("Login", sender: self)
                 
@@ -60,6 +52,20 @@ class LoginViewController: UIViewController {
     
     // Creating a new user to Firebase
     @IBAction func signUpDidTouch(sender: AnyObject) {
+        
+        
+        //Setup major minor for this user
+        let majorminorRef = self.rootRef.child("majorminor")
+        
+        //setup profile for user
+        let profileRef = self.rootRef.child("profile")
+
+        
+        //Generate random ints from 0->65533 (Max value for major minor is 65535)
+        let tempMajor = Int(arc4random_uniform(65533)+1)
+        let tempMinor = Int(arc4random_uniform(65533)+1)
+        
+        
         let alert = UIAlertController(title: "Register",
                                       message: "Register for an xBeacon account.",
                                       preferredStyle: .Alert)
@@ -69,19 +75,34 @@ class LoginViewController: UIViewController {
                                        style: .Default) { (action: UIAlertAction) -> Void in
                                         let emailField = alert.textFields![0]
                                         let passwordField = alert.textFields![1]
-                                        
+                                        var userID = ""
                                         FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!) { (user, error) in
                                             if error == nil {
                                                 
                                                 FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
                                                     if let user = user {
+                                                        userID = user.uid;
                                                         print("User is signed in with uid:", user.uid)
+                                                        
+                                                        //Setup profile with Major and Minor
+                                                        profileRef.child(userID).child("Major").setValue(tempMajor)
+                                                        profileRef.child(userID).child("Minor").setValue(tempMinor)
+                                                        
+                                                        //User id stored in db as "MajorValue MinorValue"
+                                                        //When another device is found, uses values to make key as above and get user id (which is immutable)
+                                                        //From there access another db containing information on profile of user via uid
+                                                        majorminorRef.child(String(tempMajor) + " " + String(tempMinor)).setValue(userID)
+                                                        
+
+                                                        
+                                                        
                                                     } else {
                                                         print("No user is signed in.")
                                                     }
                                                 }
                                                 
-                                                //Setup major minor for this user
+                                                
+                                                
                                                 
                                                 FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
                                                 }
