@@ -70,6 +70,7 @@ class LoginViewController: UIViewController {
                                       message: "Register for an xBeacon account.",
                                       preferredStyle: .Alert)
         
+        // Save the new user and assign unique major and minor values to them.
         let saveAction = UIAlertAction(title: "Save",
                                        style: .Default) { (action: UIAlertAction) -> Void in
                                         let emailField = alert.textFields![0]
