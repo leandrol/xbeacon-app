@@ -44,10 +44,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if error == nil {
                 
                 // Go to main screen
+                print("Login successful")
                 self.performSegueWithIdentifier("Login", sender: self)
                 
-            }
-            else {
+            } else {
                 self.errorLabel.text = "* Invalid username or password *"
                 self.errorLabel.hidden = false
             }
@@ -95,10 +95,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                         FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!) { (user, error) in
                                             if error == nil {
                                                 
-                                                FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
-                                                    if let user = user {
-                                                        userID = user.uid;
-                                                        print("User is signed in with uid:", user.uid)
+                                                FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
+                                                    
+                                                    if error == nil {
+                                                        userID = user!.uid;
+                                                        print("User is signed in with uid:", userID)
                                                         
                                                         //Setup profile with Major and Minor
                                                         profileRef.child(userID).child("Major").setValue(tempMajor)
@@ -106,7 +107,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                         
                                                         //Initialize contact info for each profile
                                                         profileRef.child(userID).child("Name").setValue("")
-                                                        profileRef.child(userID).child("E-mail").setValue(user.email!)
+                                                        profileRef.child(userID).child("E-mail").setValue(user!.email!)
                                                         profileRef.child(userID).child("Phone").setValue("")
                                                         
                                                         //User id stored in db as "MajorValue MinorValue"
@@ -114,28 +115,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                         //From there access another db containing information on profile of user via uid
                                                         majorminorRef.child(String(tempMajor) + " " + String(tempMinor)).setValue(userID)
                                                         
+                                                        
+                                                        self.performSegueWithIdentifier("Login", sender: self)
                                                     } else {
-                                                        print("No user is signed in.")
+                                                        print("Signup -> login failed")
                                                     }
                                                 }
-                                                
-                                                
-                                                
-                                                
-                                                FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text! ) { (user, error) in
-                                                }
-                                                
-                                                self.performSegueWithIdentifier("Login", sender: self)
-
-                                            }
-                                            
-                                            // Error creating user
-                                            else {
-                                                print("Error creating user")
+                                            } else {
+                                                print("Signup failed")
+                                                print(error?.localizedDescription)
                                             }
                                         }
-                                        
-                                        
         }
         
         let cancelAction = UIAlertAction(title: "Cancel",

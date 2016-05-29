@@ -20,17 +20,10 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var logoutButton: UIButton!
     
+    
     //UI Functions
     @IBAction func logoutButtonPressed(sender: AnyObject) {
         try! FIRAuth.auth()!.signOut()
-
-        FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
-            if let user = user {
-                print("User is signed in with uid:", user.uid)
-            } else {
-                print("No user is signed in.")
-            }
-        }
     }
     
     // Operation vars

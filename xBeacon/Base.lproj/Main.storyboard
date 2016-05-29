@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -69,11 +69,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gyd-WW-LXt"/>
+                                    <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ggy-AB-521"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Error code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Es5-6P-In5">
-                                <rect key="frame" x="40" y="204" width="520" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Es5-6P-In5">
+                                <rect key="frame" x="40" y="207" width="520" height="18"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.018721711901257265" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.99801541634135571" green="0.95476382468597887" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -124,12 +124,12 @@
                         <outlet property="errorLabel" destination="Es5-6P-In5" id="2Ry-Vu-dDc"/>
                         <outlet property="textFieldLoginEmail" destination="Qii-IV-ZCr" id="3bn-nB-IZR"/>
                         <outlet property="textFieldLoginPassword" destination="hgX-a4-CXX" id="tSZ-Cv-BKM"/>
-                        <segue destination="uf3-UE-VdC" kind="presentation" identifier="Login" id="Rr0-KB-P28"/>
+                        <segue destination="uf3-UE-VdC" kind="presentation" identifier="Login" id="cmx-sv-Qsz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="14"/>
+            <point key="canvasLocation" x="122" y="62"/>
         </scene>
         <!--Connect-->
         <scene sceneID="Kfd-6U-hCJ">
@@ -169,7 +169,7 @@
                                     <color key="titleColor" red="0.9086070061" green="0.39762428399999999" blue="0.41295781729999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="logoutButtonPressed:" destination="uf3-UE-VdC" eventType="touchUpInside" id="ZaB-Fl-mUQ"/>
+                                    <segue destination="fyE-Lk-Axg" kind="presentation" id="2FJ-od-x1y"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="urz-Dr-dF4">
@@ -357,6 +357,6 @@
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rr0-KB-P28"/>
+        <segue reference="cmx-sv-Qsz"/>
     </inferredMetricsTieBreakers>
 </document>

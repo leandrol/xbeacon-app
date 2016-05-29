@@ -15,7 +15,6 @@ class EditProfileViewController: UIViewController {
     
     //Constants
     var rootRef = FIRDatabase.database().reference()
-    let userID = FIRAuth.auth()?.currentUser?.uid
     
     //Outlets
     @IBOutlet var nameField: UITextField!
@@ -28,21 +27,25 @@ class EditProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Retrieve profile info from Firebase and set the text fields to the appropriate value
-        rootRef.child("profile").child(self.userID!).observeSingleEventOfType(.Value, withBlock: { (info) in
+        if let user = FIRAuth.auth()?.currentUser {
             
-            let name = info.value!["Name"] as! String
-            let phone = info.value!["Phone"] as! String
-            let email = info.value!["E-mail"] as! String
+            self.rootRef.child("profile").child(user.uid).observeSingleEventOfType(.Value, withBlock: { (info) in
             
-            self.nameField.text = name
-            self.phoneField.text = phone
-            self.emailField.text = email
+                let name = info.value!["Name"] as! String
+                let phone = info.value!["Phone"] as! String
+                let email = info.value!["E-mail"] as! String
             
-        }) { (error) in
-            print(error.localizedDescription)
-            print("Could not import contact info")
+                self.nameField.text = name
+                self.phoneField.text = phone
+                self.emailField.text = email
+            
+            }) { (error) in
+                print(error.localizedDescription)
+                print("Could not import contact info")
+            }
+        } else {
+            print("userid is nil, unable to import contact info")
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,14 +66,18 @@ class EditProfileViewController: UIViewController {
         let updatedInfo = ["Name" : self.nameField.text!,
                            "Phone" : self.phoneField.text!,
                            "E-mail" : self.emailField.text!]
-        rootRef.child("profile").child(self.userID!).updateChildValues(updatedInfo, withCompletionBlock: { (error, ref) in
-            if error == nil {
-                print("save success")
-                self.performSegueWithIdentifier("SaveProfile", sender: self)
-            } else {
-                print("error saving")
-            }
-        })
+        if let user = FIRAuth.auth()?.currentUser {
+            rootRef.child("profile").child(user.uid).updateChildValues(updatedInfo, withCompletionBlock: { (error, ref) in
+                if error == nil {
+                    print("save success")
+                    self.performSegueWithIdentifier("SaveProfile", sender: self)
+                } else {
+                    print("error saving")
+                }
+            })
+        } else {
+            print("failed to save profile")
+        }
         
     }
 
