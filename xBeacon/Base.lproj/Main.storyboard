@@ -132,32 +132,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="urz-Dr-dF4">
-                                <rect key="frame" x="275" y="289" width="51" height="31"/>
-                                <connections>
-                                    <action selector="switchChanged:" destination="uf3-UE-VdC" eventType="valueChanged" id="ZQd-jN-Hdt"/>
-                                </connections>
-                            </switch>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlx-DM-r00">
-                                <rect key="frame" x="247" y="431" width="106" height="57"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="S4R-46-xJf"/>
-                                    <constraint firstAttribute="width" constant="106" id="hs2-5l-Ptb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Logout"/>
-                                <connections>
-                                    <action selector="logoutButtonPressed:" destination="uf3-UE-VdC" eventType="touchUpInside" id="sm2-2K-naa"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="a2E-ws-TWh"/>
-                                </connections>
-                            </button>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="ceS-Cp-aET">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="ceS-Cp-aET">
+                                <rect key="frame" x="-1" y="20" width="600" height="44"/>
                                 <color key="barTintColor" red="0.1450980392" green="0.61960784310000006" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Connect" id="CGr-mc-sge"/>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Be-qc-kZP">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="nK9-WM-cBQ">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
@@ -170,20 +155,50 @@
                                 </items>
                                 <color key="barTintColor" red="0.062745098040000002" green="0.1450980392" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="urz-Dr-dF4">
+                                <rect key="frame" x="275" y="562" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchChanged:" destination="uf3-UE-VdC" eventType="valueChanged" id="ZQd-jN-Hdt"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlx-DM-r00">
+                                <rect key="frame" x="514" y="561" width="66" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="0.9086070061" green="0.39762428399999999" blue="0.41295781729999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="uf3-UE-VdC" eventType="touchUpInside" id="sm2-2K-naa"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Hce-hV-3HM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ceS-Cp-aET" firstAttribute="leading" secondItem="nK9-WM-cBQ" secondAttribute="leading" id="4Fn-Zt-wjx"/>
-                            <constraint firstItem="urz-Dr-dF4" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="DZ2-Gz-dVM"/>
-                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="Jci-QR-Gnv"/>
-                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="width" secondItem="4rc-5F-QPx" secondAttribute="width" id="V9q-5Z-lqt"/>
+                            <constraint firstAttribute="trailing" secondItem="nK9-WM-cBQ" secondAttribute="trailing" id="8rx-7d-Jpv"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="centerX" secondItem="urz-Dr-dF4" secondAttribute="centerX" id="Afd-7T-j8h"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerY" secondItem="nK9-WM-cBQ" secondAttribute="centerY" id="Fjx-2B-nhw"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="centerY" secondItem="urz-Dr-dF4" secondAttribute="centerY" id="JQh-qg-2qu"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="bottom" secondItem="1xL-YQ-80O" secondAttribute="top" id="KAe-gP-QlR"/>
                             <constraint firstItem="ceS-Cp-aET" firstAttribute="width" secondItem="4rc-5F-QPx" secondAttribute="width" id="XbH-E8-UEg"/>
                             <constraint firstItem="nK9-WM-cBQ" firstAttribute="top" secondItem="nlx-DM-r00" secondAttribute="bottom" constant="68" id="Z0J-rs-g72"/>
                             <constraint firstItem="ceS-Cp-aET" firstAttribute="top" secondItem="061-bs-gZN" secondAttribute="bottom" id="fGF-vu-dlT"/>
-                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="lRr-bM-xID"/>
-                            <constraint firstItem="urz-Dr-dF4" firstAttribute="top" secondItem="4rc-5F-QPx" secondAttribute="top" constant="289" id="reQ-re-pYt"/>
-                            <constraint firstItem="1xL-YQ-80O" firstAttribute="top" secondItem="nK9-WM-cBQ" secondAttribute="bottom" id="swh-4u-ozD"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="leading" secondItem="1Be-qc-kZP" secondAttribute="leading" id="rET-aN-n73"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="trailing" secondItem="4rc-5F-QPx" secondAttribute="trailingMargin" id="sur-b0-KtS"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerX" secondItem="nK9-WM-cBQ" secondAttribute="centerX" id="u8q-oi-aTq"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="centerY" secondItem="nlx-DM-r00" secondAttribute="centerY" id="whp-TR-CIh"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerY" secondItem="4rc-5F-QPx" secondAttribute="centerY" constant="1" id="yRM-1c-Qtj"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="trailing" secondItem="1Be-qc-kZP" secondAttribute="trailing" id="yUu-Ft-Daj"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="leading" secondItem="4rc-5F-QPx" secondAttribute="leading" id="ypm-Lh-eb6"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Z0J-rs-g72"/>
+                                <exclude reference="Fjx-2B-nhw"/>
+                                <exclude reference="u8q-oi-aTq"/>
+                                <exclude reference="yRM-1c-Qtj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Connect" id="dvp-ab-j3N"/>
                     <connections>
@@ -193,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ktr-ql-hmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1489" y="52"/>
+            <point key="canvasLocation" x="1497" y="40"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="acz-fE-3hg">

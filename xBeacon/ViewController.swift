@@ -29,7 +29,6 @@ class ViewController: UIViewController {
                 print("User is signed in with uid:", user.uid)
             } else {
                 print("No user is signed in.")
-                self.performSegueWithIdentifier("Logout", sender: self)
             }
         }
     }
