@@ -10,16 +10,21 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     // Constants
     var rootRef = FIRDatabase.database().reference()
     // Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        textFieldLoginEmail.delegate = self
+        textFieldLoginPassword.delegate = self
+        errorLabel.hidden = true
     }
     
 
@@ -43,11 +48,22 @@ class LoginViewController: UIViewController {
                 
             }
             else {
-                
+                self.errorLabel.text = "* Invalid username or password *"
+                self.errorLabel.hidden = false
             }
-            
         }
-
+    }
+    
+    // Return key going to next field or if on password, return key logs user in.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.textFieldLoginEmail {
+            self.textFieldLoginPassword.becomeFirstResponder()
+        } else if textField == self.textFieldLoginPassword {
+            self.textFieldLoginPassword.resignFirstResponder()
+            self.loginDidTouch(self)
+        }
+        
+        return true
     }
     
     // Creating a new user to Firebase

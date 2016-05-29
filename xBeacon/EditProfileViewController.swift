@@ -27,6 +27,7 @@ class EditProfileViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        // Retrieve profile info from Firebase and set the text fields to the appropriate value
         rootRef.child("profile").child(self.userID!).observeSingleEventOfType(.Value, withBlock: { (info) in
             
             let name = info.value!["Name"] as! String
@@ -58,6 +59,7 @@ class EditProfileViewController: UIViewController {
         
         print("Saving Profile...")
         
+        // Update the profile info simultaneously and check for errors
         let updatedInfo = ["Name" : self.nameField.text!,
                            "Phone" : self.phoneField.text!,
                            "E-mail" : self.emailField.text!]

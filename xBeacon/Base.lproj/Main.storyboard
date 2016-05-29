@@ -72,9 +72,17 @@
                                     <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gyd-WW-LXt"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Error code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Es5-6P-In5">
+                                <rect key="frame" x="40" y="204" width="520" height="21"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.018721711901257265" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.99801541634135571" green="0.95476382468597887" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.16621145606040955" green="0.72776776552200317" blue="0.71955513954162598" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Qii-IV-ZCr" firstAttribute="top" secondItem="Es5-6P-In5" secondAttribute="bottom" constant="8" id="0Qw-1l-vMc"/>
                             <constraint firstItem="hgX-a4-CXX" firstAttribute="top" secondItem="Qii-IV-ZCr" secondAttribute="bottom" constant="15" id="0rb-3Y-uIh"/>
                             <constraint firstItem="H9Y-mc-C33" firstAttribute="top" secondItem="hgX-a4-CXX" secondAttribute="bottom" constant="15" id="159-Wr-wm0"/>
                             <constraint firstItem="87D-No-IRo" firstAttribute="width" secondItem="H9Y-mc-C33" secondAttribute="width" id="C1D-M3-g5n"/>
@@ -85,10 +93,12 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Qii-IV-ZCr" secondAttribute="bottom" constant="350" id="PBr-yV-ok1"/>
                             <constraint firstItem="hgX-a4-CXX" firstAttribute="width" secondItem="Qii-IV-ZCr" secondAttribute="width" id="RVK-Ba-ggF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qii-IV-ZCr" secondAttribute="trailing" constant="20" id="aJA-a2-qNa"/>
+                            <constraint firstItem="Es5-6P-In5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bSi-bb-ykJ"/>
                             <constraint firstItem="H9Y-mc-C33" firstAttribute="height" secondItem="hgX-a4-CXX" secondAttribute="height" id="c9l-mf-eRb"/>
                             <constraint firstItem="H9Y-mc-C33" firstAttribute="width" secondItem="hgX-a4-CXX" secondAttribute="width" id="fd3-5L-qkh"/>
                             <constraint firstItem="cfS-je-X8m" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="hBZ-9G-OI9"/>
                             <constraint firstItem="87D-No-IRo" firstAttribute="top" secondItem="H9Y-mc-C33" secondAttribute="bottom" constant="8" id="i2s-Tg-x2N"/>
+                            <constraint firstItem="Es5-6P-In5" firstAttribute="width" secondItem="Qii-IV-ZCr" secondAttribute="width" id="i6e-7a-S8i"/>
                             <constraint firstItem="cfS-je-X8m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iKd-tR-f2y"/>
                             <constraint firstItem="87D-No-IRo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pwa-Vt-YKb"/>
                             <constraint firstItem="H9Y-mc-C33" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t8C-Q4-ORl"/>
@@ -111,6 +121,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="Es5-6P-In5" id="2Ry-Vu-dDc"/>
                         <outlet property="textFieldLoginEmail" destination="Qii-IV-ZCr" id="3bn-nB-IZR"/>
                         <outlet property="textFieldLoginPassword" destination="hgX-a4-CXX" id="tSZ-Cv-BKM"/>
                         <segue destination="uf3-UE-VdC" kind="presentation" identifier="Login" id="Rr0-KB-P28"/>
