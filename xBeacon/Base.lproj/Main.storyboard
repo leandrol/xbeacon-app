@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -129,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="96"/>
+            <point key="canvasLocation" x="70" y="14"/>
         </scene>
         <!--Connect-->
         <scene sceneID="Kfd-6U-hCJ">
@@ -143,58 +143,97 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="urz-Dr-dF4">
-                                <rect key="frame" x="275" y="289" width="51" height="31"/>
-                                <connections>
-                                    <action selector="switchChanged:" destination="uf3-UE-VdC" eventType="valueChanged" id="ZQd-jN-Hdt"/>
-                                </connections>
-                            </switch>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlx-DM-r00">
-                                <rect key="frame" x="247" y="431" width="106" height="57"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="S4R-46-xJf"/>
-                                    <constraint firstAttribute="width" constant="106" id="hs2-5l-Ptb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Logout"/>
-                                <connections>
-                                    <action selector="logoutButtonPressed:" destination="uf3-UE-VdC" eventType="touchUpInside" id="sm2-2K-naa"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="a2E-ws-TWh"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="ceS-Cp-aET">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <rect key="frame" x="-1" y="20" width="601" height="44"/>
                                 <color key="barTintColor" red="0.1450980392" green="0.61960784310000006" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Connect" id="CGr-mc-sge"/>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Be-qc-kZP">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="nK9-WM-cBQ">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem title="Edit Profile" id="38y-sz-qDY">
-                                        <color key="tintColor" red="0.90860700607299805" green="0.39762428402900696" blue="0.4129578173160553" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <segue destination="fyE-Lk-Axg" kind="show" id="W2c-R9-bMd"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
+                                <items/>
                                 <color key="barTintColor" red="0.062745098040000002" green="0.1450980392" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEg-VX-Fd7">
+                                <rect key="frame" x="490" y="561" width="90" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="eUU-yk-VsC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Edit Profile">
+                                    <color key="titleColor" red="0.9086070061" green="0.39762428399999999" blue="0.41295781729999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="uf3-UE-VdC" eventType="touchUpInside" id="ZaB-Fl-mUQ"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="urz-Dr-dF4">
+                                <rect key="frame" x="275" y="562" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="AHK-ub-Bt7"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="switchChanged:" destination="uf3-UE-VdC" eventType="valueChanged" id="ZQd-jN-Hdt"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlx-DM-r00">
+                                <rect key="frame" x="20" y="561" width="66" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="niL-4w-700"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="0.9086070061" green="0.39762428399999999" blue="0.41295781729999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="uf3-UE-VdC" eventType="touchUpInside" id="sm2-2K-naa"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Hce-hV-3HM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ceS-Cp-aET" firstAttribute="leading" secondItem="nK9-WM-cBQ" secondAttribute="leading" id="4Fn-Zt-wjx"/>
-                            <constraint firstItem="urz-Dr-dF4" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="DZ2-Gz-dVM"/>
-                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="Jci-QR-Gnv"/>
-                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="width" secondItem="4rc-5F-QPx" secondAttribute="width" id="V9q-5Z-lqt"/>
-                            <constraint firstItem="ceS-Cp-aET" firstAttribute="width" secondItem="4rc-5F-QPx" secondAttribute="width" id="XbH-E8-UEg"/>
+                            <constraint firstItem="1Be-qc-kZP" firstAttribute="leading" secondItem="nK9-WM-cBQ" secondAttribute="leading" id="0x3-nR-NPm"/>
+                            <constraint firstItem="ceS-Cp-aET" firstAttribute="trailing" secondItem="1Be-qc-kZP" secondAttribute="trailing" id="5Qf-qt-FNb"/>
+                            <constraint firstItem="ceS-Cp-aET" firstAttribute="bottom" secondItem="1Be-qc-kZP" secondAttribute="top" id="Fes-C1-nhz"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerY" secondItem="nK9-WM-cBQ" secondAttribute="centerY" id="Fjx-2B-nhw"/>
+                            <constraint firstItem="1Be-qc-kZP" firstAttribute="bottom" secondItem="nK9-WM-cBQ" secondAttribute="top" id="Gfe-zn-Dbx"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="bottom" secondItem="NEg-VX-Fd7" secondAttribute="bottom" id="HKv-bh-KSq"/>
+                            <constraint firstItem="ceS-Cp-aET" firstAttribute="top" secondItem="061-bs-gZN" secondAttribute="bottom" id="KJ0-aI-fbm"/>
+                            <constraint firstItem="1xL-YQ-80O" firstAttribute="top" secondItem="urz-Dr-dF4" secondAttribute="bottom" constant="7" id="MdL-3e-jkS"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="top" secondItem="1Be-qc-kZP" secondAttribute="bottom" constant="5" id="QZk-pH-3jY"/>
+                            <constraint firstItem="ceS-Cp-aET" firstAttribute="centerX" secondItem="1Be-qc-kZP" secondAttribute="centerX" id="RVd-qe-BzE"/>
+                            <constraint firstItem="1Be-qc-kZP" firstAttribute="trailing" secondItem="nK9-WM-cBQ" secondAttribute="trailing" id="Rnh-67-Zjl"/>
+                            <constraint firstItem="1Be-qc-kZP" firstAttribute="leading" secondItem="4rc-5F-QPx" secondAttribute="leading" id="T14-lT-Vs5"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="leading" secondItem="4rc-5F-QPx" secondAttribute="leadingMargin" id="U4v-4q-RsC"/>
                             <constraint firstItem="nK9-WM-cBQ" firstAttribute="top" secondItem="nlx-DM-r00" secondAttribute="bottom" constant="68" id="Z0J-rs-g72"/>
-                            <constraint firstItem="ceS-Cp-aET" firstAttribute="top" secondItem="061-bs-gZN" secondAttribute="bottom" id="fGF-vu-dlT"/>
-                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="centerX" secondItem="4rc-5F-QPx" secondAttribute="centerX" id="lRr-bM-xID"/>
-                            <constraint firstItem="urz-Dr-dF4" firstAttribute="top" secondItem="4rc-5F-QPx" secondAttribute="top" constant="289" id="reQ-re-pYt"/>
-                            <constraint firstItem="1xL-YQ-80O" firstAttribute="top" secondItem="nK9-WM-cBQ" secondAttribute="bottom" id="swh-4u-ozD"/>
+                            <constraint firstAttribute="trailing" secondItem="1Be-qc-kZP" secondAttribute="trailing" id="Zb6-E9-ATU"/>
+                            <constraint firstItem="NEg-VX-Fd7" firstAttribute="trailing" secondItem="4rc-5F-QPx" secondAttribute="trailingMargin" id="ekr-Qd-1hk"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerY" secondItem="nK9-WM-cBQ" secondAttribute="centerY" id="emm-AY-MAM"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="centerX" secondItem="urz-Dr-dF4" secondAttribute="centerX" id="nk2-7W-xAK"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="trailing" secondItem="4rc-5F-QPx" secondAttribute="trailingMargin" id="sur-b0-KtS"/>
+                            <constraint firstItem="NEg-VX-Fd7" firstAttribute="centerY" secondItem="nK9-WM-cBQ" secondAttribute="centerY" id="t60-ZL-nsd"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="top" secondItem="NEg-VX-Fd7" secondAttribute="top" id="tII-pO-SCh"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerX" secondItem="nK9-WM-cBQ" secondAttribute="centerX" id="u8q-oi-aTq"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="centerY" secondItem="nlx-DM-r00" secondAttribute="centerY" id="whp-TR-CIh"/>
+                            <constraint firstItem="nK9-WM-cBQ" firstAttribute="bottom" secondItem="1xL-YQ-80O" secondAttribute="top" id="xoI-zt-Ibz"/>
+                            <constraint firstItem="nlx-DM-r00" firstAttribute="centerY" secondItem="4rc-5F-QPx" secondAttribute="centerY" constant="1" id="yRM-1c-Qtj"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Z0J-rs-g72"/>
+                                <exclude reference="whp-TR-CIh"/>
+                                <exclude reference="Fjx-2B-nhw"/>
+                                <exclude reference="sur-b0-KtS"/>
+                                <exclude reference="u8q-oi-aTq"/>
+                                <exclude reference="yRM-1c-Qtj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Connect" id="dvp-ab-j3N"/>
                     <connections>
@@ -204,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ktr-ql-hmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1723" y="76"/>
+            <point key="canvasLocation" x="1497" y="40"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="acz-fE-3hg">
@@ -311,7 +350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2Z-b8-VZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="883"/>
+            <point key="canvasLocation" x="762" y="855"/>
         </scene>
     </scenes>
     <resources>

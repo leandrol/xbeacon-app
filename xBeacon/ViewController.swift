@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     //UI Functions
     @IBAction func logoutButtonPressed(sender: AnyObject) {
         try! FIRAuth.auth()!.signOut()
-        
+
         FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
             if let user = user {
                 print("User is signed in with uid:", user.uid)
