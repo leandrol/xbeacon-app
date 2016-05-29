@@ -88,6 +88,11 @@ class LoginViewController: UIViewController {
                                                         profileRef.child(userID).child("Major").setValue(tempMajor)
                                                         profileRef.child(userID).child("Minor").setValue(tempMinor)
                                                         
+                                                        //Initialize contact info for each profile
+                                                        profileRef.child(userID).child("Name").setValue("")
+                                                        profileRef.child(userID).child("E-mail").setValue(user.email!)
+                                                        profileRef.child(userID).child("Phone").setValue("")
+                                                        
                                                         //User id stored in db as "MajorValue MinorValue"
                                                         //When another device is found, uses values to make key as above and get user id (which is immutable)
                                                         //From there access another db containing information on profile of user via uid

@@ -45,7 +45,7 @@
                                 <size key="shadowOffset" width="3" height="3"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87D-No-IRo">
-                                <rect key="frame" x="40" y="393" width="520" height="45"/>
+                                <rect key="frame" x="40" y="391" width="520" height="45"/>
                                 <color key="backgroundColor" red="0.14287549257278442" green="0.64548259973526001" blue="0.64550107717514038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="1YY-bo-FZH"/>
@@ -70,7 +70,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gyd-WW-LXt"/>
-                                    <segue destination="uf3-UE-VdC" kind="presentation" identifier="Login" id="4jS-Uu-eCu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -114,6 +113,7 @@
                     <connections>
                         <outlet property="textFieldLoginEmail" destination="Qii-IV-ZCr" id="3bn-nB-IZR"/>
                         <outlet property="textFieldLoginPassword" destination="hgX-a4-CXX" id="tSZ-Cv-BKM"/>
+                        <segue destination="uf3-UE-VdC" kind="presentation" identifier="Login" id="Rr0-KB-P28"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -218,18 +218,15 @@
                                                 <segue destination="uf3-UE-VdC" kind="showDetail" identifier="cancelEditProfile" id="K9C-ls-cbz"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DfJ-qj-ihq">
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="DfJ-qj-ihq">
                                             <color key="tintColor" red="0.062745098040000002" green="0.1450980392" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <segue destination="uf3-UE-VdC" kind="popoverPresentation" identifier="saveProfileChanges" popoverAnchorBarButtonItem="DfJ-qj-ihq" id="cNx-4e-N11">
-                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                </segue>
+                                                <action selector="saveProfile:" destination="fyE-Lk-Axg" id="559-bu-KoJ"/>
                                             </connections>
                                         </barButtonItem>
                                         <connections>
                                             <outlet property="backBarButtonItem" destination="nf9-Do-dUr" id="sZK-wJ-5Ud"/>
                                             <outlet property="leftBarButtonItem" destination="nf9-Do-dUr" id="8fs-DF-d2W"/>
-                                            <outlet property="rightBarButtonItem" destination="DfJ-qj-ihq" id="tVQ-eH-fyH"/>
                                         </connections>
                                     </navigationItem>
                                 </items>
@@ -294,6 +291,12 @@
                             <action selector="dismissKeyboard:" destination="fyE-Lk-Axg" eventType="touchDown" id="rGi-UF-QPs"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="Bav-26-ZHN" id="Wsh-fz-4zs"/>
+                        <outlet property="nameField" destination="B52-6P-KkO" id="9sp-EG-ToV"/>
+                        <outlet property="phoneField" destination="BA8-9u-D9r" id="ji3-HH-Q92"/>
+                        <segue destination="uf3-UE-VdC" kind="presentation" identifier="SaveProfile" modalTransitionStyle="coverVertical" id="x5k-1D-jMm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2Z-b8-VZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -304,6 +307,6 @@
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4jS-Uu-eCu"/>
+        <segue reference="Rr0-KB-P28"/>
     </inferredMetricsTieBreakers>
 </document>
