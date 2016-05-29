@@ -44,6 +44,8 @@ class LoginViewController: UIViewController {
             }
             else {
                 
+                print("Error logging in!")
+                
             }
             
         }
@@ -93,9 +95,6 @@ class LoginViewController: UIViewController {
                                                         //From there access another db containing information on profile of user via uid
                                                         majorminorRef.child(String(tempMajor) + " " + String(tempMinor)).setValue(userID)
                                                         
-
-                                                        
-                                                        
                                                     } else {
                                                         print("No user is signed in.")
                                                     }
@@ -109,6 +108,11 @@ class LoginViewController: UIViewController {
                                                 
                                                 self.performSegueWithIdentifier("Login", sender: self)
 
+                                            }
+                                            
+                                            // Error creating user
+                                            else {
+                                                print("Error creating user")
                                             }
                                         }
                                         

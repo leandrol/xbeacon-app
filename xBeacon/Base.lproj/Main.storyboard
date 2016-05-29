@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -44,7 +44,7 @@
                                 <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="3" height="3"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87D-No-IRo">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87D-No-IRo">
                                 <rect key="frame" x="40" y="393" width="520" height="45"/>
                                 <color key="backgroundColor" red="0.14287549257278442" green="0.64548259973526001" blue="0.64550107717514038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -69,8 +69,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gyd-WW-LXt"/>
-                                    <segue destination="uf3-UE-VdC" kind="presentation" identifier="Login" id="4jS-Uu-eCu"/>
+                                    <action selector="loginDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ggy-AB-521"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -114,11 +113,12 @@
                     <connections>
                         <outlet property="textFieldLoginEmail" destination="Qii-IV-ZCr" id="3bn-nB-IZR"/>
                         <outlet property="textFieldLoginPassword" destination="hgX-a4-CXX" id="tSZ-Cv-BKM"/>
+                        <segue destination="uf3-UE-VdC" kind="presentation" identifier="Login" id="cmx-sv-Qsz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="96"/>
+            <point key="canvasLocation" x="70" y="14"/>
         </scene>
         <!--Connect-->
         <scene sceneID="Kfd-6U-hCJ">
@@ -193,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ktr-ql-hmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1723" y="76"/>
+            <point key="canvasLocation" x="1489" y="52"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="acz-fE-3hg">
@@ -297,13 +297,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2Z-b8-VZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="883"/>
+            <point key="canvasLocation" x="762" y="855"/>
         </scene>
     </scenes>
     <resources>
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4jS-Uu-eCu"/>
+        <segue reference="cmx-sv-Qsz"/>
     </inferredMetricsTieBreakers>
 </document>
