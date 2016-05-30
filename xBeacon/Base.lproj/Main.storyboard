@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -281,19 +280,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Dux-rK-sB8">
-                                <rect key="frame" x="236" y="90" width="128" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Dux-rK-sB8" secondAttribute="height" multiplier="1:1" id="3dT-MZ-boG"/>
-                                    <constraint firstAttribute="height" constant="128" id="NW7-GB-94B"/>
-                                    <constraint firstAttribute="width" constant="128" id="r10-MI-eyS"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="3dT-MZ-boG"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B52-6P-KkO">
                                 <rect key="frame" x="50" y="238" width="500" height="30"/>
                                 <constraints>
@@ -318,23 +304,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2MO-Vg-720">
+                                <rect key="frame" x="236" y="89" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="gAt-5P-62P"/>
+                                    <constraint firstAttribute="height" constant="128" id="tqB-7c-gJn"/>
+                                </constraints>
+                                <state key="normal" image="user"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Bav-26-ZHN" firstAttribute="centerX" secondItem="0TZ-DK-km8" secondAttribute="centerX" id="5DM-h2-bXV"/>
+                            <constraint firstItem="B52-6P-KkO" firstAttribute="top" secondItem="2MO-Vg-720" secondAttribute="bottom" constant="21" id="Gn0-Kv-kKX"/>
                             <constraint firstItem="BA8-9u-D9r" firstAttribute="centerX" secondItem="0TZ-DK-km8" secondAttribute="centerX" id="Gss-Hq-PkB"/>
                             <constraint firstItem="1QM-PL-5C6" firstAttribute="top" secondItem="SqH-ew-tuY" secondAttribute="bottom" id="PXN-dU-HVc"/>
                             <constraint firstItem="B52-6P-KkO" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0TZ-DK-km8" secondAttribute="leadingMargin" constant="30" id="Q6g-jv-2gy"/>
-                            <constraint firstItem="B52-6P-KkO" firstAttribute="top" secondItem="Dux-rK-sB8" secondAttribute="bottom" constant="20" id="XXc-La-Vev"/>
+                            <constraint firstItem="2MO-Vg-720" firstAttribute="centerX" secondItem="0TZ-DK-km8" secondAttribute="centerX" id="R42-Sw-Wmw"/>
+                            <constraint firstItem="2MO-Vg-720" firstAttribute="top" secondItem="1QM-PL-5C6" secondAttribute="bottom" constant="25" id="XaU-f1-D8h"/>
                             <constraint firstItem="Bav-26-ZHN" firstAttribute="top" secondItem="BA8-9u-D9r" secondAttribute="bottom" constant="8" id="Y8X-FU-48a"/>
                             <constraint firstItem="1QM-PL-5C6" firstAttribute="width" secondItem="0TZ-DK-km8" secondAttribute="width" id="gHU-st-h85"/>
-                            <constraint firstItem="Dux-rK-sB8" firstAttribute="centerX" secondItem="0TZ-DK-km8" secondAttribute="centerX" id="l70-Dy-gH2"/>
                             <constraint firstItem="B52-6P-KkO" firstAttribute="centerX" secondItem="0TZ-DK-km8" secondAttribute="centerX" id="l7J-gY-e6H"/>
                             <constraint firstItem="1QM-PL-5C6" firstAttribute="centerX" secondItem="0TZ-DK-km8" secondAttribute="centerX" id="nxg-Aq-t3g"/>
                             <constraint firstItem="Bav-26-ZHN" firstAttribute="width" secondItem="BA8-9u-D9r" secondAttribute="width" id="v89-5B-Jz9"/>
                             <constraint firstItem="BA8-9u-D9r" firstAttribute="width" secondItem="B52-6P-KkO" secondAttribute="width" id="xjX-bR-d0z"/>
                             <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="B52-6P-KkO" secondAttribute="trailing" constant="30" id="xyw-Qa-nXh"/>
-                            <constraint firstItem="Dux-rK-sB8" firstAttribute="top" secondItem="SqH-ew-tuY" secondAttribute="bottom" constant="70" id="yui-tr-24u"/>
                             <constraint firstItem="BA8-9u-D9r" firstAttribute="top" secondItem="B52-6P-KkO" secondAttribute="bottom" constant="8" id="zJM-UK-ife"/>
                         </constraints>
                         <connections>
@@ -357,6 +351,6 @@
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cmx-sv-Qsz"/>
+        <segue reference="x5k-1D-jMm"/>
     </inferredMetricsTieBreakers>
 </document>

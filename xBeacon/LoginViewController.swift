@@ -9,10 +9,13 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     // Constants
     var rootRef = FIRDatabase.database().reference()
+    let storageRef = FIRStorage.storage().reference()
+    
     // Outlets
     @IBOutlet weak var textFieldLoginEmail: UITextField!
     @IBOutlet weak var textFieldLoginPassword: UITextField!
@@ -42,10 +45,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         FIRAuth.auth()?.signInWithEmail(textFieldLoginEmail.text!, password: textFieldLoginPassword.text!) { (user, error) in
             
             if error == nil {
-                
-                // Go to main screen
-                print("Login successful")
-                self.performSegueWithIdentifier("Login", sender: self)
+                if self.downloadProfilePic((user?.uid)!, newUser: false) {
+                    print("download success")
+                    self.performSegueWithIdentifier("Login", sender: self)
+                }
                 
             } else {
                 self.errorLabel.text = "* Invalid username or password *"
@@ -64,6 +67,47 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    // Download the profile pic of the user after they have successfully signed in.
+    // New User: download the default profile picture and upload it as the user's id.
+    // Existing User: download the signed in user's profile picture.
+    func downloadProfilePic(userid: String, newUser: Bool) -> Bool {
+        // Set up the file paths for the download and uploads
+        var downloadSuccess = true
+        var profilePicRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics").child(userid)
+        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+        let imagePath = documentsPath.URLByAppendingPathComponent("cool-pix")
+        let filePath = imagePath.URLByAppendingPathComponent("itsmemario")
+        
+        // Set download path to default image
+        if newUser {
+            profilePicRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics/user.png")
+        }
+        
+        profilePicRef.writeToFile(filePath) { (URL, error) in
+            if error == nil {
+                print("download success")
+            
+                // Rename and upload the default profile image as the user's id
+                if newUser {
+                    profilePicRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics").child(userid)
+                    profilePicRef.putFile(URL!, metadata: nil, completion: { (metadeta, error) in
+                        if error == nil {
+                            print("upload success")
+                        } else {
+                            downloadSuccess = false
+                            print(error?.localizedDescription)
+                        }
+                    })
+                }
+            } else {
+                downloadSuccess = false
+                print(error?.localizedDescription)
+            }
+        }
+        
+        return downloadSuccess
     }
     
     // Creating a new user to Firebase
@@ -110,20 +154,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                         profileRef.child(userID).child("E-mail").setValue(user!.email!)
                                                         profileRef.child(userID).child("Phone").setValue("")
                                                         
+                                                        
                                                         //User id stored in db as "MajorValue MinorValue"
                                                         //When another device is found, uses values to make key as above and get user id (which is immutable)
                                                         //From there access another db containing information on profile of user via uid
                                                         majorminorRef.child(String(tempMajor) + " " + String(tempMinor)).setValue(userID)
                                                         
                                                         
-                                                        self.performSegueWithIdentifier("Login", sender: self)
+                                                        if self.downloadProfilePic(userID, newUser: true) {
+                                                            self.performSegueWithIdentifier("Login", sender: nil)
+                                                        }
+                                                        
+                                                        
                                                     } else {
                                                         print("Signup -> login failed")
                                                     }
                                                 }
                                             } else {
                                                 print("Signup failed")
-                                                print(error?.localizedDescription)
+                                                print(error?.localizedFailureReason)
                                             }
                                         }
         }

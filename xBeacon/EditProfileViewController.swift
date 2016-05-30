@@ -10,11 +10,13 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class EditProfileViewController: UIViewController {
     
     //Constants
     var rootRef = FIRDatabase.database().reference()
+    let storageRef = FIRStorage.storage().reference()
     
     //Outlets
     @IBOutlet var nameField: UITextField!
@@ -28,6 +30,8 @@ class EditProfileViewController: UIViewController {
         
         // Retrieve profile info from Firebase and set the text fields to the appropriate value
         if let user = FIRAuth.auth()?.currentUser {
+            
+            
             
             self.rootRef.child("profile").child(user.uid).observeSingleEventOfType(.Value, withBlock: { (info) in
             
