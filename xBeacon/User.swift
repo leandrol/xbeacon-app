@@ -22,7 +22,7 @@ class User {
     let rootRef = FIRDatabase.database().reference()
     let storageRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics")
     
-    init(major: String?, minor: String?) {
+    init(major: String?, minor: String?, tableView: UITableView? ) {
         self.rootRef.child("majorminor").observeSingleEventOfType(.Value, withBlock: { (info) in
             self.uid = info.value![major! + " " + minor!] as? String
             print(self.uid)
@@ -39,12 +39,15 @@ class User {
                         print(error.localizedDescription)
                     } else {
                         self.image = UIImage.init(data: data!)
+                        tableView?.reloadData()
                     }
                 })
             })
         })
         
     }
+    
+    
     
     
 }

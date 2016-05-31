@@ -16,9 +16,7 @@ import FirebaseDatabase
 class ConnectViewController: UITableViewController {
     
     // Temporary values used for test with the simulator
-    var users: [User] = [User.init(major: "63662", minor: "47622"),
-                         User.init(major: "63291", minor: "54565"),
-                         User.init(major: "22575", minor: "18251")]
+    var users: [User] = []
   
     // Actions
     @IBOutlet weak var searchingSwitch: UISwitch!
@@ -42,6 +40,7 @@ class ConnectViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,9 +58,22 @@ class ConnectViewController: UITableViewController {
         
         if (monitoringSwitch.on) {
             print("ON")
+            
+            /*
+            users = [User.init(major: "63662", minor: "47622", tableView: self.tableView ),
+                     User.init(major: "63291", minor: "54565", tableView: self.tableView ),
+                     User.init(major: "22575", minor: "18251", tableView: self.tableView )]
+            */
+            /*
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+ */
         }
         else {
             print("OFF")
+            users = []
+            self.tableView.reloadData()
         }
     }
     
@@ -169,11 +181,13 @@ extension ConnectViewController: SearchingOperationDelegate {
     func rangingOperationDidRangeBeacons(beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         self.detectedBeacons = beacons as! [CLBeacon]
         // Uncomment the next two comments to allow auto-filling of the array
-        //users = []
+        users = []
         for beacon in detectedBeacons {
             print("Beacon: \(beacon.major) \(beacon.minor)")
-            //users.append(User.init(major: "\(beacon.major)", minor: "\(beacon.minor)"))
+            users.append(User.init(major: beacon.major.stringValue, minor: beacon.minor.stringValue, tableView: self.tableView ))
         }
+        
+        //self.tableView.reloadData()
         
         /*
         for beacon in beacons as! [CLBeacon] {
