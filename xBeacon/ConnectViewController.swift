@@ -13,17 +13,24 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class ViewController: UIViewController {
+class ConnectViewController: UITableViewController {
+    
+    // Temporary values used for test with the simulator
+    var users: [User] = [User.init(major: "63662", minor: "47622"),
+                         User.init(major: "63291", minor: "54565"),
+                         User.init(major: "22575", minor: "18251")]
   
     // Actions
     @IBOutlet weak var searchingSwitch: UISwitch!
     
-    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     
     //UI Functions
     @IBAction func logoutButtonPressed(sender: AnyObject) {
         try! FIRAuth.auth()!.signOut()
+        
+        performSegueWithIdentifier("Logout", sender: self)
     }
     
     // Operation vars
@@ -57,10 +64,33 @@ class ViewController: UIViewController {
             print("OFF")
         }
     }
+    
+    
+    //  * * * Table view functions * * * \\
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return users.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserCell
+        
+        // Configure the cell...
+        let user = users[indexPath.row] as User
+        
+        cell.user = user
+        
+        return cell
+    }
 
 }
 
-extension ViewController: SearchingOperationDelegate {
+extension ConnectViewController: SearchingOperationDelegate {
     /**
      Triggered when the searching operation has started successfully.
      */
@@ -138,8 +168,11 @@ extension ViewController: SearchingOperationDelegate {
      */
     func rangingOperationDidRangeBeacons(beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         self.detectedBeacons = beacons as! [CLBeacon]
+        // Uncomment the next two comments to allow auto-filling of the array
+        //users = []
         for beacon in detectedBeacons {
             print("Beacon: \(beacon.major) \(beacon.minor)")
+            //users.append(User.init(major: "\(beacon.major)", minor: "\(beacon.minor)"))
         }
         
         /*

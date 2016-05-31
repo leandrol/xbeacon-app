@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet var nameField: UITextField!
     @IBOutlet var phoneField: UITextField!
     @IBOutlet var emailField: UITextField!
+    @IBOutlet var profilePicButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,11 @@ class EditProfileViewController: UIViewController {
                 self.nameField.text = name
                 self.phoneField.text = phone
                 self.emailField.text = email
+                
+                let imagePath = self.getDocumentsURL().URLByAppendingPathComponent("cool-pix").URLByAppendingPathComponent("itsmemario").path!
+                if let profileImage = self.loadImageFromPath(imagePath) {
+                    self.profilePicButton.setImage(profileImage, forState: .Normal)
+                }
             
             }) { (error) in
                 print(error.localizedDescription)
@@ -51,6 +57,31 @@ class EditProfileViewController: UIViewController {
             print("userid is nil, unable to import contact info")
         }
     }
+    
+    // Helper functions to retrieve images and set as the profile picture
+    func getDocumentsURL() -> NSURL {
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        return documentsURL
+    }
+    
+    func fileInDocumentsDirectory(filename: String) -> String {
+        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+        return fileURL.path!
+    }
+    
+    func loadImageFromPath(path: String) -> UIImage? {
+        let image = UIImage.init(contentsOfFile: path)
+        if image == nil {
+            print("no image found")
+        } else {
+            print("image found")
+        }
+        
+        return image
+    }
+    // -------------------
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
