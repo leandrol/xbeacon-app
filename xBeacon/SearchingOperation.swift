@@ -276,7 +276,7 @@ extension SearchingOperation
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        //delegate?.rangingOperationDidRangeBeacons(beacons, inRegion: region)
+        delegate?.rangingOperationDidRangeBeacons(beacons, inRegion: region)
         //print("Found beacon.")
         //print("Count: \(beacons.count)")
         for beacon in beacons as! [CLBeacon] {
