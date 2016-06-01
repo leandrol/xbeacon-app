@@ -39,7 +39,9 @@ class User {
                         print(error.localizedDescription)
                     } else {
                         self.image = UIImage.init(data: data!)
-                        tableView?.reloadData()
+                        dispatch_async(dispatch_get_main_queue(), {
+                            tableView!.reloadData()
+                        })
                     }
                 })
             })

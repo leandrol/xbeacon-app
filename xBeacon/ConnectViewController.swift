@@ -40,7 +40,13 @@ class ConnectViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        searchingOperation.delegate = self
         
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        searchingSwitch.on = false
+        switchChanged(searchingSwitch)
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +65,7 @@ class ConnectViewController: UITableViewController {
         if (monitoringSwitch.on) {
             print("ON")
             
+            users = []
             /*
             users = [User.init(major: "63662", minor: "47622", tableView: self.tableView ),
                      User.init(major: "63291", minor: "54565", tableView: self.tableView ),
@@ -72,7 +79,6 @@ class ConnectViewController: UITableViewController {
         }
         else {
             print("OFF")
-            users = []
             self.tableView.reloadData()
         }
     }
@@ -178,10 +184,13 @@ extension ConnectViewController: SearchingOperationDelegate {
      :param: beacons An array of provided beacons that the ranging operation detected.
      :param: region A provided region whose beacons the operation is trying to range.
      */
+    
+    
     func rangingOperationDidRangeBeacons(beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+        users = []
+        
         self.detectedBeacons = beacons as! [CLBeacon]
         // Uncomment the next two comments to allow auto-filling of the array
-        users = []
         for beacon in detectedBeacons {
             print("Beacon: \(beacon.major) \(beacon.minor)")
             users.append(User.init(major: beacon.major.stringValue, minor: beacon.minor.stringValue, tableView: self.tableView ))
