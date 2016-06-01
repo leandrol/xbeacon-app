@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		B56384061CF4F64A003B3832 /* BeaconOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56384051CF4F64A003B3832 /* BeaconOperation.swift */; };
 		B56384081CF4FEE7003B3832 /* SearchingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56384071CF4FEE7003B3832 /* SearchingOperation.swift */; };
-		B5AAEF011CF7A9F600A6B03E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AAEF001CF7A9F600A6B03E /* ViewController.swift */; };
+		B5AAEF011CF7A9F600A6B03E /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AAEF001CF7A9F600A6B03E /* ConnectViewController.swift */; };
 		BE0B0AA3D07802C1C8662446 /* Pods_xBeacon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC32CCA61382C6754CF825F /* Pods_xBeacon.framework */; };
 		D551867C1CF906EC005EF0C3 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D551867B1CF906EC005EF0C3 /* EditProfileViewController.swift */; };
+		D55186801CFD2D02005EF0C3 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D551867F1CFD2D02005EF0C3 /* UserCell.swift */; };
+		D55186821CFD3342005EF0C3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55186811CFD3342005EF0C3 /* User.swift */; };
 		D5DDE7001CF4F05D0020286B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDE6FF1CF4F05D0020286B /* AppDelegate.swift */; };
 		D5DDE7021CF4F05D0020286B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDE7011CF4F05D0020286B /* LoginViewController.swift */; };
 		D5DDE7051CF4F05D0020286B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5DDE7031CF4F05D0020286B /* Main.storyboard */; };
@@ -25,8 +27,10 @@
 		ABC32CCA61382C6754CF825F /* Pods_xBeacon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xBeacon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56384051CF4F64A003B3832 /* BeaconOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconOperation.swift; sourceTree = "<group>"; };
 		B56384071CF4FEE7003B3832 /* SearchingOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchingOperation.swift; sourceTree = "<group>"; };
-		B5AAEF001CF7A9F600A6B03E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B5AAEF001CF7A9F600A6B03E /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		D551867B1CF906EC005EF0C3 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		D551867F1CFD2D02005EF0C3 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		D55186811CFD3342005EF0C3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5DDE6FC1CF4F05D0020286B /* xBeacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xBeacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5DDE6FF1CF4F05D0020286B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5DDE7011CF4F05D0020286B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -101,8 +105,10 @@
 				D5DDE7111CF56AE30020286B /* GoogleService-Info.plist */,
 				D5DDE6FF1CF4F05D0020286B /* AppDelegate.swift */,
 				D5DDE7011CF4F05D0020286B /* LoginViewController.swift */,
-				B5AAEF001CF7A9F600A6B03E /* ViewController.swift */,
+				B5AAEF001CF7A9F600A6B03E /* ConnectViewController.swift */,
 				D5DDE7031CF4F05D0020286B /* Main.storyboard */,
+				D551867F1CFD2D02005EF0C3 /* UserCell.swift */,
+				D55186811CFD3342005EF0C3 /* User.swift */,
 				D551867B1CF906EC005EF0C3 /* EditProfileViewController.swift */,
 				D5DDE7061CF4F05D0020286B /* Assets.xcassets */,
 				D5DDE7081CF4F05D0020286B /* LaunchScreen.storyboard */,
@@ -146,7 +152,7 @@
 				TargetAttributes = {
 					D5DDE6FB1CF4F05D0020286B = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = K3MJWYRKF9;
+						DevelopmentTeam = SQ5K4C3B9P;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -243,12 +249,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5AAEF011CF7A9F600A6B03E /* ViewController.swift in Sources */,
+				B5AAEF011CF7A9F600A6B03E /* ConnectViewController.swift in Sources */,
 				B56384081CF4FEE7003B3832 /* SearchingOperation.swift in Sources */,
 				D551867C1CF906EC005EF0C3 /* EditProfileViewController.swift in Sources */,
 				D5DDE7021CF4F05D0020286B /* LoginViewController.swift in Sources */,
+				D55186821CFD3342005EF0C3 /* User.swift in Sources */,
 				D5DDE7001CF4F05D0020286B /* AppDelegate.swift in Sources */,
 				B56384061CF4F64A003B3832 /* BeaconOperation.swift in Sources */,
+				D55186801CFD2D02005EF0C3 /* UserCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +374,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = xBeacon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucsd.badass.xBeaconskw;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucsd.badass.xBeacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -382,7 +390,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = xBeacon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucsd.badass.xBeaconskw;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucsd.badass.xBeacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

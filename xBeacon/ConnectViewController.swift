@@ -13,24 +13,22 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class ViewController: UIViewController {
+class ConnectViewController: UITableViewController {
+    
+    // Temporary values used for test with the simulator
+    var users: [User] = []
   
     // Actions
     @IBOutlet weak var searchingSwitch: UISwitch!
     
-    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    
     
     //UI Functions
     @IBAction func logoutButtonPressed(sender: AnyObject) {
         try! FIRAuth.auth()!.signOut()
-
-        FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
-            if let user = user {
-                print("User is signed in with uid:", user.uid)
-            } else {
-                print("No user is signed in.")
-            }
-        }
+        
+        performSegueWithIdentifier("Logout", sender: self)
     }
     
     // Operation vars
@@ -42,6 +40,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,15 +58,51 @@ class ViewController: UIViewController {
         
         if (monitoringSwitch.on) {
             print("ON")
+            
+            /*
+            users = [User.init(major: "63662", minor: "47622", tableView: self.tableView ),
+                     User.init(major: "63291", minor: "54565", tableView: self.tableView ),
+                     User.init(major: "22575", minor: "18251", tableView: self.tableView )]
+            */
+            /*
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+ */
         }
         else {
             print("OFF")
+            users = []
+            self.tableView.reloadData()
         }
+    }
+    
+    
+    //  * * * Table view functions * * * \\
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return users.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserCell
+        
+        // Configure the cell...
+        let user = users[indexPath.row] as User
+        
+        cell.user = user
+        
+        return cell
     }
 
 }
 
-extension ViewController: SearchingOperationDelegate {
+extension ConnectViewController: SearchingOperationDelegate {
     /**
      Triggered when the searching operation has started successfully.
      */
@@ -145,9 +180,14 @@ extension ViewController: SearchingOperationDelegate {
      */
     func rangingOperationDidRangeBeacons(beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         self.detectedBeacons = beacons as! [CLBeacon]
+        // Uncomment the next two comments to allow auto-filling of the array
+        users = []
         for beacon in detectedBeacons {
             print("Beacon: \(beacon.major) \(beacon.minor)")
+            users.append(User.init(major: beacon.major.stringValue, minor: beacon.minor.stringValue, tableView: self.tableView ))
         }
+        
+        //self.tableView.reloadData()
         
         /*
         for beacon in beacons as! [CLBeacon] {

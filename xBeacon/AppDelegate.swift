@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Register for notifications
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        
+        FIRAuth.auth()?.addAuthStateDidChangeListener() { (auth, user) in
+            if let _ = user {
+                print("User signed IN")
+            } else {
+                print("User signed OUT")
+            }
+        }
+        
         return true
     }
 
