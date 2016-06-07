@@ -15,6 +15,7 @@ class User {
     var name: String?
     var phone: String?
     var email: String?
+    var linkedin: String?
     var image: UIImage?
     
     var uid: String?
@@ -31,6 +32,8 @@ class User {
                 self.name = info.value!["Name"] as? String
                 self.phone = info.value!["Phone"] as? String
                 self.email = info.value!["E-mail"] as? String
+                self.linkedin = info.value!["LinkedIn URL"] as? String
+
                 
                 
                 self.storageRef.child(self.uid!).dataWithMaxSize(INT64_MAX, completion: { (data, error) in
