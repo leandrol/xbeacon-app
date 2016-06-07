@@ -56,7 +56,7 @@ class ConnectViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         searchingSwitch.on = buttonState
-        //switchChanged(searchingSwitch)
+        switchChanged(searchingSwitch)
         print("appearing: " + String(buttonState))
     }
 
@@ -234,13 +234,23 @@ extension ConnectViewController: SearchingOperationDelegate {
     
     
     func rangingOperationDidRangeBeacons(beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        users = []
+        /*
+        //users = []
+        var duplicate: Bool = false
         
         self.detectedBeacons = beacons as! [CLBeacon]
         // Uncomment the next two comments to allow auto-filling of the array
         for beacon in detectedBeacons {
             print("Beacon: \(beacon.major) \(beacon.minor)")
-            users.append(User.init(major: beacon.major.stringValue, minor: beacon.minor.stringValue, tableView: self.tableView ))
+            
+            for user in users {
+                if (user.major == String(beacon.major) && user.minor == String(beacon.minor)) {
+                    duplicate = true
+                }
+            }
+            if (!duplicate) {
+                users.append(User.init(major: beacon.major.stringValue, minor: beacon.minor.stringValue, tableView: self.tableView ))
+            }
         }
         
         //self.tableView.reloadData()
@@ -250,6 +260,37 @@ extension ConnectViewController: SearchingOperationDelegate {
             print("Beacon: \(beacon.major) \(beacon.minor)")
         }
         */
+        */
+        self.detectedBeacons = beacons as! [CLBeacon]
+        var tempUsers: [User] = []
+        var isNew: Bool = true
+        
+        // Find new beacons and append to a temporary list
+        for beacon in detectedBeacons {
+            isNew = true
+            for user in users {
+                if user.major == beacon.major.stringValue && user.minor == beacon.minor.stringValue {
+                    isNew = false
+                    break
+                }
+            }
+            if isNew == true {
+                tempUsers.append(User.init(major: beacon.major.stringValue, minor: beacon.minor.stringValue, tableView: self.tableView))
+            }
+        }
+        
+        // Append the rest if they are still within the region
+        for user in users {
+            for beacon in detectedBeacons {
+                if user.major == beacon.major.stringValue && user.minor == beacon.minor.stringValue {
+                    tempUsers.append(user)
+                    break
+                }
+            }
+        }
+        
+        users = tempUsers
+        self.tableView.reloadData()
     }
 }
 
