@@ -288,6 +288,9 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGq-qJ-6lS">
                                 <rect key="frame" x="88" y="397" width="424" height="30"/>
                                 <state key="normal" title="Connect on LinkedIn"/>
+                                <connections>
+                                    <action selector="linkedinButtonClicked:" destination="uWJ-Ns-Qr6" eventType="touchUpInside" id="SvH-5B-fck"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -320,6 +323,7 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="Xfm-rb-AXo" id="fZa-QP-Pkd"/>
+                        <outlet property="linkedinButton" destination="yGq-qJ-6lS" id="beA-sh-nAy"/>
                         <outlet property="nameField" destination="tfV-Wt-yHr" id="Y1T-tW-wPW"/>
                         <outlet property="phoneField" destination="sE6-Rh-fVf" id="VpK-w6-PAQ"/>
                         <outlet property="profilePicButton" destination="Cgx-KI-KTj" id="txN-5T-9fK"/>

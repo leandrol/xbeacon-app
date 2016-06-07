@@ -22,11 +22,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet var phoneField: UITextField!
     @IBOutlet var emailField: UITextField!
     @IBOutlet var profilePicButton: UIButton!
-    @IBOutlet var linkedinButton: UIButton!
+    @IBOutlet weak var linkedinButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-print("a")
         // Do any additional setup after loading the view.
         if let user = currentUser {
 
@@ -39,9 +38,9 @@ print("a")
             linkedinString = user.linkedin!
 
             linkedinButton.setTitle(("Connect with " + user.name! + ""), forState: .Normal)
-            if ((user.image) != nil) {
-                profilePicButton.setImage(user.image, forState: .Normal)
-            }
+            
+            profilePicButton.setImage(user.image, forState: .Normal)
+
 
         }
     }
@@ -52,11 +51,10 @@ print("a")
     }
     
     @IBAction func linkedinButtonClicked(sender: AnyObject) {
-                let linkedinDeepURLSplitArray = linkedinString.componentsSeparatedByString("linkedin.com/")
-                let url = NSURL(string: "linkedin://" + linkedinDeepURLSplitArray[linkedinDeepURLSplitArray.endIndex])!
-                UIApplication.sharedApplication().openURL(url)
-            }
-    
+        let linkedinDeepURLSplitArray = linkedinString.componentsSeparatedByString("linkedin.com/")
+        let url = NSURL(string: "linkedin://" + linkedinDeepURLSplitArray[linkedinDeepURLSplitArray.count-1])!
+        UIApplication.sharedApplication().openURL(url)
+    }
 
     /*
     // MARK: - Navigation

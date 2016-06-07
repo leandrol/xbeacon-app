@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xBeacon/ProfileViewController.swift"
-            timestampString = "486989562.283872"
+            timestampString = "486990195.102882"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "ProfileViewController"
             landmarkType = "3">
          </BreakpointContent>
