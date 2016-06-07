@@ -105,7 +105,7 @@ class EditProfileViewController: UIViewController {
             rootRef.child("profile").child(user.uid).updateChildValues(updatedInfo, withCompletionBlock: { (error, ref) in
                 if error == nil {
                     print("save success")
-                    self.performSegueWithIdentifier("SaveProfile", sender: self)
+                    //self.performSegueWithIdentifier("SaveProfile", sender: self)
                 } else {
                     print("error saving")
                 }

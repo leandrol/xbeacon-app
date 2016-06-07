@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -175,6 +175,7 @@
                                 <connections>
                                     <outlet property="userImage" destination="KuQ-Ba-baW" id="cFx-Bp-qyV"/>
                                     <outlet property="userName" destination="LVX-uc-DdS" id="mSg-Wv-zAk"/>
+                                    <segue destination="uWJ-Ns-Qr6" kind="presentation" identifier="DetailedProfile" id="b4m-cC-cZV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -194,7 +195,7 @@
                         <barButtonItem title="My Profile" id="iyy-U2-OfO">
                             <color key="tintColor" red="0.1450980392" green="0.61960784310000006" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="fyE-Lk-Axg" kind="presentation" id="yZ3-qu-2z8"/>
+                                <segue destination="fyE-Lk-Axg" kind="presentation" identifier="EditProfile" id="yZ3-qu-2z8"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -220,6 +221,108 @@
             </objects>
             <point key="canvasLocation" x="1865" y="75"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="sDS-5m-8aP">
+            <objects>
+                <viewController id="uWJ-Ns-Qr6" customClass="ProfileViewController" customModule="xBeacon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3v9-xQ-h87"/>
+                        <viewControllerLayoutGuide type="bottom" id="n1S-mW-uL2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IKZ-oB-czY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n53-cP-myx">
+                                <rect key="frame" x="0.0" y="20" width="600" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Y4q-9N-TR8"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.12549019610000001" green="0.51764705879999995" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Profile" id="1Rz-lY-RRV">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Er9-3k-iv7">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="MdY-5b-eRr" kind="unwind" unwindAction="backToHome:" id="Dj3-gx-aGL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfV-Wt-yHr">
+                                <rect key="frame" x="50" y="236" width="500" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KBW-lc-n2R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sE6-Rh-fVf">
+                                <rect key="frame" x="50" y="274" width="500" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="b4K-ks-WwW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xfm-rb-AXo">
+                                <rect key="frame" x="50" y="312" width="500" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Db8-yh-SYg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cgx-KI-KTj">
+                                <rect key="frame" x="236" y="87" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="GDY-On-GdB"/>
+                                    <constraint firstAttribute="width" constant="128" id="noa-Jw-qK5"/>
+                                </constraints>
+                                <state key="normal" image="user"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tfV-Wt-yHr" firstAttribute="trailing" secondItem="sE6-Rh-fVf" secondAttribute="trailing" id="5fV-q8-44U"/>
+                            <constraint firstItem="sE6-Rh-fVf" firstAttribute="trailing" secondItem="Xfm-rb-AXo" secondAttribute="trailing" id="B1q-1M-pHJ"/>
+                            <constraint firstItem="sE6-Rh-fVf" firstAttribute="leading" secondItem="Xfm-rb-AXo" secondAttribute="leading" id="CnA-4j-n3i"/>
+                            <constraint firstItem="tfV-Wt-yHr" firstAttribute="leading" secondItem="IKZ-oB-czY" secondAttribute="leadingMargin" constant="30" id="FBG-Py-o4i"/>
+                            <constraint firstItem="sE6-Rh-fVf" firstAttribute="top" secondItem="tfV-Wt-yHr" secondAttribute="bottom" constant="8" symbolic="YES" id="FLB-LQ-xPj"/>
+                            <constraint firstItem="tfV-Wt-yHr" firstAttribute="leading" secondItem="sE6-Rh-fVf" secondAttribute="leading" id="OXq-tT-rG7"/>
+                            <constraint firstItem="tfV-Wt-yHr" firstAttribute="centerX" secondItem="IKZ-oB-czY" secondAttribute="centerX" id="ObX-eU-ypa"/>
+                            <constraint firstAttribute="trailing" secondItem="n53-cP-myx" secondAttribute="trailing" id="Vh8-VO-tUW"/>
+                            <constraint firstItem="Cgx-KI-KTj" firstAttribute="top" secondItem="n53-cP-myx" secondAttribute="bottom" constant="25" id="acV-0q-cmi"/>
+                            <constraint firstItem="Cgx-KI-KTj" firstAttribute="centerX" secondItem="IKZ-oB-czY" secondAttribute="centerX" id="elv-ol-cDH"/>
+                            <constraint firstItem="n53-cP-myx" firstAttribute="leading" secondItem="IKZ-oB-czY" secondAttribute="leading" id="heF-7w-ceJ"/>
+                            <constraint firstItem="tfV-Wt-yHr" firstAttribute="top" secondItem="Cgx-KI-KTj" secondAttribute="bottom" constant="21" id="jRO-pH-d6H"/>
+                            <constraint firstItem="Xfm-rb-AXo" firstAttribute="centerX" secondItem="IKZ-oB-czY" secondAttribute="centerX" id="nNb-xL-Jc3"/>
+                            <constraint firstItem="sE6-Rh-fVf" firstAttribute="centerX" secondItem="IKZ-oB-czY" secondAttribute="centerX" id="p50-HU-3Na"/>
+                            <constraint firstItem="Cgx-KI-KTj" firstAttribute="centerX" secondItem="tfV-Wt-yHr" secondAttribute="centerX" id="pif-As-SEc"/>
+                            <constraint firstItem="n53-cP-myx" firstAttribute="top" secondItem="3v9-xQ-h87" secondAttribute="bottom" id="rji-IA-spU"/>
+                            <constraint firstItem="Xfm-rb-AXo" firstAttribute="top" secondItem="sE6-Rh-fVf" secondAttribute="bottom" constant="8" symbolic="YES" id="x3I-3A-Qw8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pif-As-SEc"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="emailField" destination="Xfm-rb-AXo" id="fZa-QP-Pkd"/>
+                        <outlet property="nameField" destination="tfV-Wt-yHr" id="Y1T-tW-wPW"/>
+                        <outlet property="phoneField" destination="sE6-Rh-fVf" id="VpK-w6-PAQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pwc-EH-iLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MdY-5b-eRr" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2674" y="75"/>
+        </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="acz-fE-3hg">
             <objects>
@@ -240,13 +343,14 @@
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="nf9-Do-dUr">
                                             <color key="tintColor" red="0.062745098040000002" green="0.1450980392" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <segue destination="RZG-2F-CCL" kind="presentation" identifier="CancelChanges" id="KZd-lS-xax"/>
+                                                <segue destination="RzJ-nt-e8g" kind="unwind" unwindAction="cancelEdit:" id="Llv-va-WbM"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="DfJ-qj-ihq">
                                             <color key="tintColor" red="0.062745098040000002" green="0.1450980392" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="saveProfile:" destination="fyE-Lk-Axg" id="559-bu-KoJ"/>
+                                                <segue destination="RzJ-nt-e8g" kind="unwind" unwindAction="saveProfile:" id="8xM-PF-Cti"/>
                                             </connections>
                                         </barButtonItem>
                                         <connections>
@@ -316,10 +420,10 @@
                         <outlet property="nameField" destination="B52-6P-KkO" id="9sp-EG-ToV"/>
                         <outlet property="phoneField" destination="BA8-9u-D9r" id="ji3-HH-Q92"/>
                         <outlet property="profilePicButton" destination="2MO-Vg-720" id="gRI-DR-IM5"/>
-                        <segue destination="RZG-2F-CCL" kind="presentation" identifier="SaveProfile" id="Cot-hf-17R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2Z-b8-VZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="RzJ-nt-e8g" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="462" y="867"/>
         </scene>
@@ -352,7 +456,6 @@
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5jf-wO-OB4"/>
         <segue reference="yZ3-qu-2z8"/>
     </inferredMetricsTieBreakers>
 </document>
