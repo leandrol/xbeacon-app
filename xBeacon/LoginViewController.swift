@@ -46,7 +46,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             if error == nil {
                 if self.downloadProfilePic((user?.uid)!, newUser: false) {
-                    print("download success")
                     self.performSegueWithIdentifier("Login", sender: self)
                 }
                 
