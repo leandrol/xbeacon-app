@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var linkedinField: UITextField!
     @IBOutlet weak var profilePicButton: UIButton!
 
     override func viewDidLoad() {
@@ -39,10 +40,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 let name = info.value!["Name"] as! String
                 let phone = info.value!["Phone"] as! String
                 let email = info.value!["E-mail"] as! String
-            
+                let linkedin = info.value!["LinkedIn URL"] as! String
+                
                 self.nameField.text = name
                 self.phoneField.text = phone
                 self.emailField.text = email
+                self.linkedinField.text = linkedin
                 
                 let imagePath = self.getDocumentsURL().URLByAppendingPathComponent("cool-pix").URLByAppendingPathComponent("itsmemario").path!
                 if let profileImage = self.loadImageFromPath(imagePath) {
@@ -122,7 +125,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // Update the profile info simultaneously and check for errors
         let updatedInfo = ["Name" : self.nameField.text!,
                            "Phone" : self.phoneField.text!,
-                           "E-mail" : self.emailField.text!]
+                           "E-mail" : self.emailField.text!,
+                           "LinkedIn URL" : self.linkedinField.text!]
         if let user = FIRAuth.auth()?.currentUser {
             rootRef.child("profile").child(user.uid).updateChildValues(updatedInfo, withCompletionBlock: { (error, ref) in
                 if error == nil {

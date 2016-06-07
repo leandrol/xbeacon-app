@@ -129,10 +129,10 @@ class ConnectViewController: UITableViewController {
             if let selectedUserCell = sender as? UserCell {
                 print("Cell selected " + selectedUserCell.userName.text!)
                 print("UID: " + selectedUserCell.user.uid!)
-            
                 let indexPath = tableView.indexPathForCell(selectedUserCell)!
                 let selectedUser = users[indexPath.row]
                 profileViewController.currentUser = selectedUser
+
             }
         }
         else {
