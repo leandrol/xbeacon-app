@@ -138,7 +138,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             profilePicRef.writeToFile(filePath)
                             
                             print("save success")
-                            //self.performSegueWithIdentifier("SaveProfile", sender: self)
+                            self.performSegueWithIdentifier("saveProfile", sender: self)
                         }
                     })
                     

@@ -354,7 +354,6 @@
                                             <color key="tintColor" red="0.062745098040000002" green="0.1450980392" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="saveProfile:" destination="fyE-Lk-Axg" id="559-bu-KoJ"/>
-                                                <segue destination="RZG-2F-CCL" kind="show" identifier="saveProfile" id="0Ba-r0-7qC"/>
                                             </connections>
                                         </barButtonItem>
                                         <connections>
@@ -433,6 +432,7 @@
                         <outlet property="nameField" destination="B52-6P-KkO" id="9sp-EG-ToV"/>
                         <outlet property="phoneField" destination="BA8-9u-D9r" id="ji3-HH-Q92"/>
                         <outlet property="profilePicButton" destination="2MO-Vg-720" id="gRI-DR-IM5"/>
+                        <segue destination="RZG-2F-CCL" kind="show" identifier="saveProfile" id="BFY-Of-9HC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2Z-b8-VZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -469,7 +469,7 @@
         <image name="user" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Ba-r0-7qC"/>
+        <segue reference="BFY-Of-9HC"/>
         <segue reference="axN-WR-Al4"/>
     </inferredMetricsTieBreakers>
 </document>
