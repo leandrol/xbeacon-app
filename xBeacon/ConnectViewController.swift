@@ -77,16 +77,8 @@ class ConnectViewController: UITableViewController {
             print("ON")
             
             users = []
-            /*
-            users = [User.init(major: "63662", minor: "47622", tableView: self.tableView ),
-                     User.init(major: "63291", minor: "54565", tableView: self.tableView ),
-                     User.init(major: "22575", minor: "18251", tableView: self.tableView )]
-            */
-            /*
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadData()
-            })
- */
+
+            self.tableView.reloadData()
         }
         else {
             print("OFF")
@@ -265,12 +257,7 @@ extension ConnectViewController: SearchingOperationDelegate {
         
         users = tempUsers
         self.tableView.reloadData()
-        
-        /*
-        for beacon in beacons as! [CLBeacon] {
-            print("Beacon: \(beacon.major) \(beacon.minor)")
-        }
-        */
+
     }
 }
 

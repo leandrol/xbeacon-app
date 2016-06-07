@@ -277,37 +277,7 @@ extension SearchingOperation
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         delegate?.rangingOperationDidRangeBeacons(beacons, inRegion: region)
-        //print("Found beacon.")
-        //print("Count: \(beacons.count)")
-        for beacon in beacons as! [CLBeacon] {
-            //print("Beacon \(beacon): \(beacon.major) \(beacon.minor)")
-            let majorminorKey = String(beacon.major) + " " + String(beacon.minor)
-            let rootRef = FIRDatabase.database().reference()
-            //setup ref profile
-            let majorminorRef = rootRef.child("majorminor")
-            
-            
-            
-
-            //Right now just prints the uid, but can use the uid with the profile db to get name/fb/etc
-            majorminorRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                // Get user value
-                if(snapshot.hasChild(majorminorKey)){
-                    let foundUserID = snapshot.value![majorminorKey] as! String
-                    print("This is a user whose uid is: " + foundUserID)
-                
-                }
-                
-            }) { (error) in
-                print(error.localizedDescription)
-            }
-            
-            
-            
-            
-            
-            
-        }
+        
     }
 }
 
