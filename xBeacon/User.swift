@@ -18,11 +18,15 @@ class User {
     var image: UIImage?
     
     var uid: String?
+    var major: String?
+    var minor: String?
     
     let rootRef = FIRDatabase.database().reference()
     let storageRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics")
     
     init(major: String?, minor: String?, tableView: UITableView? ) {
+        self.major = major
+        self.minor = minor
         self.rootRef.child("majorminor").observeSingleEventOfType(.Value, withBlock: { (info) in
             self.uid = info.value![major! + " " + minor!] as? String
             print(self.uid)

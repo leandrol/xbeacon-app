@@ -155,7 +155,7 @@
 				TargetAttributes = {
 					D5DDE6FB1CF4F05D0020286B = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = FM8KX34TCE;
+						DevelopmentTeam = SQ5K4C3B9P;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -378,7 +378,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = xBeacon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucsd.badass.xBeacons;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucsd.badass.xBeacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -394,7 +394,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = xBeacon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ucsd.badass.xBeacons;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ucsd.badass.xBeacon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

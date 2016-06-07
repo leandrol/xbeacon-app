@@ -234,16 +234,37 @@ extension ConnectViewController: SearchingOperationDelegate {
     
     
     func rangingOperationDidRangeBeacons(beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        users = []
         
         self.detectedBeacons = beacons as! [CLBeacon]
-        // Uncomment the next two comments to allow auto-filling of the array
+        var tempUsers: [User] = []
+        var isNew: Bool = true
+        
+        // Find new beacons and append to a temporary list
         for beacon in detectedBeacons {
-            print("Beacon: \(beacon.major) \(beacon.minor)")
-            users.append(User.init(major: beacon.major.stringValue, minor: beacon.minor.stringValue, tableView: self.tableView ))
+            isNew = true
+            for user in users {
+                if user.major == beacon.major.stringValue && user.minor == beacon.minor.stringValue {
+                    isNew = false
+                    break
+                }
+            }
+            if isNew == true {
+                tempUsers.append(User.init(major: beacon.major.stringValue, minor: beacon.minor.stringValue, tableView: self.tableView))
+            }
+        }
+
+        // Append the rest if they are still within the region
+        for user in users {
+            for beacon in detectedBeacons {
+                if user.major == beacon.major.stringValue && user.minor == beacon.minor.stringValue {
+                    tempUsers.append(user)
+                    break
+                }
+            }
         }
         
-        //self.tableView.reloadData()
+        users = tempUsers
+        self.tableView.reloadData()
         
         /*
         for beacon in beacons as! [CLBeacon] {
