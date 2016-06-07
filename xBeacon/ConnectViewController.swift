@@ -51,13 +51,17 @@ class ConnectViewController: UITableViewController {
         // searchingSwitch.on = false
         searchingSwitch.on ? (buttonState = true) : (buttonState = false)
         //switchChanged(searchingSwitch)
-        print("leaving: " + String(buttonState))
     }
     
     override func viewWillAppear(animated: Bool) {
         searchingSwitch.on = buttonState
         switchChanged(searchingSwitch)
-        print("appearing: " + String(buttonState))
+        
+        // If button was on, restart searching
+        if (buttonState) {
+            searchingOperation.stopSearchingForBeacons()
+            searchingOperation.startSearchingForBeacons()
+        }
     }
 
     override func didReceiveMemoryWarning() {
