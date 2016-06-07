@@ -39,8 +39,9 @@ print("a")
             linkedinString = user.linkedin!
 
             linkedinButton.setTitle(("Connect with " + user.name! + ""), forState: .Normal)
-
-            profilePicButton.setImage(user.image, forState: .Normal)
+            if ((user.image) != nil) {
+                profilePicButton.setImage(user.image, forState: .Normal)
+            }
 
         }
     }
