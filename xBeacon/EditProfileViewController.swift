@@ -115,42 +115,42 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     }
     
-    @IBAction func saveProfile(sender: AnyObject) {
-        
-        print("Saving Profile...")
-        
-        // Update the profile info simultaneously and check for errors
-        let updatedInfo = ["Name" : self.nameField.text!,
-                           "Phone" : self.phoneField.text!,
-                           "E-mail" : self.emailField.text!]
-        if let user = FIRAuth.auth()?.currentUser {
-            rootRef.child("profile").child(user.uid).updateChildValues(updatedInfo, withCompletionBlock: { (error, ref) in
-                if error == nil {
-                    let profilePicRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics").child(user.uid)
-                    
-                    let imageData: NSData = UIImageJPEGRepresentation(self.profilePicButton.currentImage!, 0.5)!
-                    
-                    profilePicRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-                        if error == nil {
-                            let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
-                            let imagePath = documentsPath.URLByAppendingPathComponent("cool-pix")
-                            let filePath = imagePath.URLByAppendingPathComponent("itsmemario")
-                            profilePicRef.writeToFile(filePath)
-                            
-                            print("save success")
-                            //self.performSegueWithIdentifier("SaveProfile", sender: self)
-                        }
-                    })
-                    
-                    
-                } else {
-                    print("error saving")
-                }
-            })
-        } else {
-            print("failed to save profile")
+    @IBAction override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "saveProfile") {
+            print("Saving Profile...")
+            
+            // Update the profile info simultaneously and check for errors
+            let updatedInfo = ["Name" : self.nameField.text!,
+                               "Phone" : self.phoneField.text!,
+                               "E-mail" : self.emailField.text!]
+            if let user = FIRAuth.auth()?.currentUser {
+                rootRef.child("profile").child(user.uid).updateChildValues(updatedInfo, withCompletionBlock: { (error, ref) in
+                    if error == nil {
+                        let profilePicRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics").child(user.uid)
+                        
+                        let imageData: NSData = UIImageJPEGRepresentation(self.profilePicButton.currentImage!, 0.5)!
+                        
+                        profilePicRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                            if error == nil {
+                                let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+                                let imagePath = documentsPath.URLByAppendingPathComponent("cool-pix")
+                                let filePath = imagePath.URLByAppendingPathComponent("itsmemario")
+                                profilePicRef.writeToFile(filePath)
+                                
+                                print("save success")
+                                //self.performSegueWithIdentifier("SaveProfile", sender: self)
+                            }
+                        })
+                        
+                        
+                    } else {
+                        print("error saving")
+                    }
+                })
+            } else {
+                print("failed to save profile")
+            }
         }
-        
     }
 
     /*

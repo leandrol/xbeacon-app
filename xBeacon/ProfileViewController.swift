@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
             nameField.text = user.name
             phoneField.text = user.phone
             emailField.text = user.email
+            profilePicButton.setImage(user.image, forState: .Normal)
         }
     }
 
