@@ -55,13 +55,15 @@ class ConnectViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         searchingSwitch.on = buttonState
-        switchChanged(searchingSwitch)
+        //switchChanged(searchingSwitch)
         
         // If button was on, restart searching
+        /*
         if (buttonState) {
             searchingOperation.stopSearchingForBeacons()
             searchingOperation.startSearchingForBeacons()
         }
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -171,7 +173,7 @@ extension ConnectViewController: SearchingOperationDelegate {
      Triggered by the searching operation when it has stopped successfully.
      */
     func searchingOperationDidStopSuccessfully() {
-        
+        users = []
     }
     
     /**
@@ -265,6 +267,7 @@ extension ConnectViewController: SearchingOperationDelegate {
         }
         */
         */
+        
         self.detectedBeacons = beacons as! [CLBeacon]
         var tempUsers: [User] = []
         var isNew: Bool = true
@@ -295,6 +298,8 @@ extension ConnectViewController: SearchingOperationDelegate {
         
         users = tempUsers
         self.tableView.reloadData()
+ 
     }
+ 
 }
 
