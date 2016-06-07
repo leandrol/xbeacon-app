@@ -78,9 +78,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         return image
-    }
-    // -------------------
-    
+    }    
     
 
     override func didReceiveMemoryWarning() {
@@ -128,8 +126,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         if let user = FIRAuth.auth()?.currentUser {
             rootRef.child("profile").child(user.uid).updateChildValues(updatedInfo, withCompletionBlock: { (error, ref) in
                 if error == nil {
-                    print("save success")
-                    //self.performSegueWithIdentifier("SaveProfile", sender: self)
+                    let profilePicRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics").child(user.uid)
+                    
+                    let imageData: NSData = UIImageJPEGRepresentation(self.profilePicButton.currentImage!, 0.5)!
+                    
+                    profilePicRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                        if error == nil {
+                            let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+                            let imagePath = documentsPath.URLByAppendingPathComponent("cool-pix")
+                            let filePath = imagePath.URLByAppendingPathComponent("itsmemario")
+                            profilePicRef.writeToFile(filePath)
+                            
+                            print("save success")
+                            //self.performSegueWithIdentifier("SaveProfile", sender: self)
+                        }
+                    })
+                    
+                    
                 } else {
                     print("error saving")
                 }
