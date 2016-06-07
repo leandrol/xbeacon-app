@@ -36,9 +36,9 @@ class ProfileViewController: UIViewController {
             emailField.text = user.email
 
             linkedinString = user.linkedin!
-
+print("a")
             linkedinButton.setTitle(("Connect with " + user.name! + ""), forState: .Normal)
-            
+            print("b")
             profilePicButton.setImage(user.image, forState: .Normal)
 
 
@@ -53,7 +53,22 @@ class ProfileViewController: UIViewController {
     @IBAction func linkedinButtonClicked(sender: AnyObject) {
         let linkedinDeepURLSplitArray = linkedinString.componentsSeparatedByString("linkedin.com/")
         let url = NSURL(string: "linkedin://" + linkedinDeepURLSplitArray[linkedinDeepURLSplitArray.count-1])!
-        UIApplication.sharedApplication().openURL(url)
+        
+        if (UIApplication.sharedApplication().canOpenURL(url)) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+        else{
+            let title = "LinkedIn App not Installed"
+            let message = "It seems that the LinkedIn app is not installed. For connections to work, please download the LinkedIn app."
+            let cancelButtonTitle = "OK"
+            
+            let alertController = UIAlertController.init(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction.init(title: cancelButtonTitle, style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(cancelAction);
+            self.presentViewController(alertController, animated: true, completion: nil)
+        
+        }
+        
     }
 
     /*
