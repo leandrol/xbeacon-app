@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -146,7 +146,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K1R-Gc-ikE" id="Caw-dR-KZO">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KuQ-Ba-baW">
@@ -285,6 +285,13 @@
                                 </constraints>
                                 <state key="normal" image="user"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGq-qJ-6lS">
+                                <rect key="frame" x="88" y="397" width="424" height="30"/>
+                                <state key="normal" title="Connect on LinkedIn"/>
+                                <connections>
+                                    <action selector="linkedinButtonClicked:" destination="uWJ-Ns-Qr6" eventType="touchUpInside" id="SvH-5B-fck"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -297,9 +304,11 @@
                             <constraint firstItem="tfV-Wt-yHr" firstAttribute="centerX" secondItem="IKZ-oB-czY" secondAttribute="centerX" id="ObX-eU-ypa"/>
                             <constraint firstAttribute="trailing" secondItem="n53-cP-myx" secondAttribute="trailing" id="Vh8-VO-tUW"/>
                             <constraint firstItem="Cgx-KI-KTj" firstAttribute="top" secondItem="n53-cP-myx" secondAttribute="bottom" constant="25" id="acV-0q-cmi"/>
+                            <constraint firstItem="yGq-qJ-6lS" firstAttribute="centerX" secondItem="Xfm-rb-AXo" secondAttribute="centerX" id="ddL-bw-YIK"/>
                             <constraint firstItem="Cgx-KI-KTj" firstAttribute="centerX" secondItem="IKZ-oB-czY" secondAttribute="centerX" id="elv-ol-cDH"/>
                             <constraint firstItem="n53-cP-myx" firstAttribute="leading" secondItem="IKZ-oB-czY" secondAttribute="leading" id="heF-7w-ceJ"/>
                             <constraint firstItem="tfV-Wt-yHr" firstAttribute="top" secondItem="Cgx-KI-KTj" secondAttribute="bottom" constant="21" id="jRO-pH-d6H"/>
+                            <constraint firstItem="yGq-qJ-6lS" firstAttribute="top" secondItem="Xfm-rb-AXo" secondAttribute="bottom" constant="55" id="jzL-tN-VAD"/>
                             <constraint firstItem="Xfm-rb-AXo" firstAttribute="centerX" secondItem="IKZ-oB-czY" secondAttribute="centerX" id="nNb-xL-Jc3"/>
                             <constraint firstItem="sE6-Rh-fVf" firstAttribute="centerX" secondItem="IKZ-oB-czY" secondAttribute="centerX" id="p50-HU-3Na"/>
                             <constraint firstItem="Cgx-KI-KTj" firstAttribute="centerX" secondItem="tfV-Wt-yHr" secondAttribute="centerX" id="pif-As-SEc"/>
@@ -314,6 +323,7 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="Xfm-rb-AXo" id="fZa-QP-Pkd"/>
+                        <outlet property="linkedinButton" destination="yGq-qJ-6lS" id="beA-sh-nAy"/>
                         <outlet property="nameField" destination="tfV-Wt-yHr" id="Y1T-tW-wPW"/>
                         <outlet property="phoneField" destination="sE6-Rh-fVf" id="VpK-w6-PAQ"/>
                         <outlet property="profilePicButton" destination="Cgx-KI-KTj" id="txN-5T-9fK"/>
@@ -404,21 +414,32 @@
                                     <action selector="chooseImagePressed:" destination="fyE-Lk-Axg" eventType="touchUpInside" id="Jfc-OC-qXy"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="LinkedIn URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xYd-Mw-qAd">
+                                <rect key="frame" x="50" y="345" width="500" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Mf9-6N-4R2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="B52-6P-KkO" firstAttribute="trailing" secondItem="BA8-9u-D9r" secondAttribute="trailing" id="0Pa-8a-nCf"/>
                             <constraint firstItem="2MO-Vg-720" firstAttribute="top" secondItem="1QM-PL-5C6" secondAttribute="bottom" constant="25" id="42z-Na-Opo"/>
+                            <constraint firstItem="xYd-Mw-qAd" firstAttribute="centerX" secondItem="Bav-26-ZHN" secondAttribute="centerX" id="GLc-y6-PVb"/>
                             <constraint firstItem="B52-6P-KkO" firstAttribute="leading" secondItem="BA8-9u-D9r" secondAttribute="leading" id="KfH-rU-IwV"/>
                             <constraint firstItem="2MO-Vg-720" firstAttribute="centerX" secondItem="B52-6P-KkO" secondAttribute="centerX" id="L5i-KV-CoN"/>
                             <constraint firstItem="B52-6P-KkO" firstAttribute="top" secondItem="SqH-ew-tuY" secondAttribute="bottom" constant="211" id="N9q-5V-7Z4"/>
                             <constraint firstItem="Bav-26-ZHN" firstAttribute="top" secondItem="BA8-9u-D9r" secondAttribute="bottom" constant="8" symbolic="YES" id="Niq-bS-1Fl"/>
                             <constraint firstAttribute="trailing" secondItem="1QM-PL-5C6" secondAttribute="trailing" id="Xns-rn-5SC"/>
                             <constraint firstItem="BA8-9u-D9r" firstAttribute="leading" secondItem="Bav-26-ZHN" secondAttribute="leading" id="cPC-iK-1XL"/>
+                            <constraint firstItem="xYd-Mw-qAd" firstAttribute="width" secondItem="Bav-26-ZHN" secondAttribute="width" id="def-le-CQe"/>
                             <constraint firstItem="1QM-PL-5C6" firstAttribute="centerX" secondItem="2MO-Vg-720" secondAttribute="centerX" id="esr-SX-oyz"/>
                             <constraint firstItem="B52-6P-KkO" firstAttribute="top" secondItem="2MO-Vg-720" secondAttribute="bottom" constant="14" id="f0h-9u-KGX"/>
                             <constraint firstItem="1QM-PL-5C6" firstAttribute="leading" secondItem="0TZ-DK-km8" secondAttribute="leading" id="lot-L7-FZP"/>
                             <constraint firstItem="BA8-9u-D9r" firstAttribute="top" secondItem="B52-6P-KkO" secondAttribute="bottom" constant="8" symbolic="YES" id="ogi-vZ-QuY"/>
+                            <constraint firstItem="xYd-Mw-qAd" firstAttribute="top" secondItem="Bav-26-ZHN" secondAttribute="bottom" constant="8" id="rlb-1h-cEA"/>
                             <constraint firstItem="B52-6P-KkO" firstAttribute="leading" secondItem="0TZ-DK-km8" secondAttribute="leadingMargin" constant="30" id="vJy-gp-Gn9"/>
                             <constraint firstItem="BA8-9u-D9r" firstAttribute="trailing" secondItem="Bav-26-ZHN" secondAttribute="trailing" id="vQf-aC-s9v"/>
                             <constraint firstItem="1QM-PL-5C6" firstAttribute="top" secondItem="SqH-ew-tuY" secondAttribute="bottom" id="weU-n1-dlF"/>
@@ -429,6 +450,7 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="Bav-26-ZHN" id="Wsh-fz-4zs"/>
+                        <outlet property="linkedinField" destination="xYd-Mw-qAd" id="vTW-fQ-JuG"/>
                         <outlet property="nameField" destination="B52-6P-KkO" id="9sp-EG-ToV"/>
                         <outlet property="phoneField" destination="BA8-9u-D9r" id="ji3-HH-Q92"/>
                         <outlet property="profilePicButton" destination="2MO-Vg-720" id="gRI-DR-IM5"/>

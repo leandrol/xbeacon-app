@@ -15,22 +15,33 @@ import FirebaseStorage
 class ProfileViewController: UIViewController {
     
     var currentUser: User?
+    var linkedinString: String = ""
     
     //Outlets
     @IBOutlet var nameField: UITextField!
     @IBOutlet var phoneField: UITextField!
     @IBOutlet var emailField: UITextField!
     @IBOutlet var profilePicButton: UIButton!
+    @IBOutlet weak var linkedinButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         if let user = currentUser {
+
             nameField.text = user.name
+
             phoneField.text = user.phone
+
             emailField.text = user.email
+
+            linkedinString = user.linkedin!
+
+            linkedinButton.setTitle(("Connect with " + user.name! + ""), forState: .Normal)
+            
             profilePicButton.setImage(user.image, forState: .Normal)
+
+
         }
     }
 
@@ -39,8 +50,11 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-   
-    
+    @IBAction func linkedinButtonClicked(sender: AnyObject) {
+        let linkedinDeepURLSplitArray = linkedinString.componentsSeparatedByString("linkedin.com/")
+        let url = NSURL(string: "linkedin://" + linkedinDeepURLSplitArray[linkedinDeepURLSplitArray.count-1])!
+        UIApplication.sharedApplication().openURL(url)
+    }
 
     /*
     // MARK: - Navigation

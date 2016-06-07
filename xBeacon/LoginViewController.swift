@@ -153,7 +153,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                         profileRef.child(userID).child("Name").setValue("")
                                                         profileRef.child(userID).child("E-mail").setValue(user!.email!)
                                                         profileRef.child(userID).child("Phone").setValue("")
-                                                        
+                                                        profileRef.child(userID).child("LinkedIn URL").setValue("")
                                                         
                                                         //User id stored in db as "MajorValue MinorValue"
                                                         //When another device is found, uses values to make key as above and get user id (which is immutable)
