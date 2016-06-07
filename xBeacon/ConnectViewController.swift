@@ -13,6 +13,8 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+var buttonState: Bool = false
+
 class ConnectViewController: UITableViewController {
     
     // Temporary values used for test with the simulator
@@ -23,6 +25,7 @@ class ConnectViewController: UITableViewController {
     
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
+    //var buttonState: Bool = false
     
     //UI Functions
     @IBAction func logoutButtonPressed(sender: AnyObject) {
@@ -45,8 +48,16 @@ class ConnectViewController: UITableViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        searchingSwitch.on = false
-        switchChanged(searchingSwitch)
+        // searchingSwitch.on = false
+        searchingSwitch.on ? (buttonState = true) : (buttonState = false)
+        //switchChanged(searchingSwitch)
+        print("leaving: " + String(buttonState))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        searchingSwitch.on = buttonState
+        //switchChanged(searchingSwitch)
+        print("appearing: " + String(buttonState))
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,6 +90,7 @@ class ConnectViewController: UITableViewController {
         }
         else {
             print("OFF")
+            users.removeAll()   // Remove all users when disconnecting?
             self.tableView.reloadData()
         }
     }
@@ -105,7 +117,42 @@ class ConnectViewController: UITableViewController {
         
         return cell
     }
+    
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "DetailedProfile" {
+            let profileViewController = segue.destinationViewController as! ProfileViewController
+        
+            if let selectedUserCell = sender as? UserCell {
+                print("Cell selected " + selectedUserCell.userName.text!)
+                print("UID: " + selectedUserCell.user.uid!)
+            
+                let indexPath = tableView.indexPathForCell(selectedUserCell)!
+                let selectedUser = users[indexPath.row]
+                profileViewController.currentUser = selectedUser
+            }
+        }
+        else {
 
+        }
+    }
+    
+    
+    @IBAction func backToHome(segue: UIStoryboardSegue) {
+        
+    }
+
+    @IBAction func saveProfile(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func cancelEdit(segue: UIStoryboardSegue) {
+        
+    }
+    
 }
 
 extension ConnectViewController: SearchingOperationDelegate {

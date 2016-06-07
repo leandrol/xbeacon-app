@@ -12,17 +12,17 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //Constants
     var rootRef = FIRDatabase.database().reference()
     let storageRef = FIRStorage.storage().reference()
     
     //Outlets
-    @IBOutlet var nameField: UITextField!
-    @IBOutlet var phoneField: UITextField!
-    @IBOutlet var emailField: UITextField!
-    @IBOutlet var profilePicButton: UIButton!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var phoneField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var profilePicButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,9 +78,7 @@ class EditProfileViewController: UIViewController {
         }
         
         return image
-    }
-    // -------------------
-    
+    }    
     
 
     override func didReceiveMemoryWarning() {
@@ -88,9 +86,33 @@ class EditProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            print("Info did not have the required UIImage for the Original Image")
+            dismissViewControllerAnimated(true, completion: nil)
+            return
+        }
+        
+        self.profilePicButton.setImage(image, forState: .Normal)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     //Actions
     @IBAction func dismissKeyboard(sender: AnyObject) {
         view.endEditing(true)
+    }
+    
+    @IBAction func chooseImagePressed(sender: UIButton) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        picker.sourceType = .PhotoLibrary
+        picker.modalPresentationStyle = .FullScreen
+        
+        
+        presentViewController(picker, animated: true, completion: nil)
+
     }
     
     @IBAction func saveProfile(sender: AnyObject) {
@@ -104,8 +126,23 @@ class EditProfileViewController: UIViewController {
         if let user = FIRAuth.auth()?.currentUser {
             rootRef.child("profile").child(user.uid).updateChildValues(updatedInfo, withCompletionBlock: { (error, ref) in
                 if error == nil {
-                    print("save success")
-                    self.performSegueWithIdentifier("SaveProfile", sender: self)
+                    let profilePicRef = FIRStorage.storage().referenceForURL("gs://project-8882172146800754293.appspot.com/profile-pics").child(user.uid)
+                    
+                    let imageData: NSData = UIImageJPEGRepresentation(self.profilePicButton.currentImage!, 0.5)!
+                    
+                    profilePicRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                        if error == nil {
+                            let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+                            let imagePath = documentsPath.URLByAppendingPathComponent("cool-pix")
+                            let filePath = imagePath.URLByAppendingPathComponent("itsmemario")
+                            profilePicRef.writeToFile(filePath)
+                            
+                            print("save success")
+                            //self.performSegueWithIdentifier("SaveProfile", sender: self)
+                        }
+                    })
+                    
+                    
                 } else {
                     print("error saving")
                 }

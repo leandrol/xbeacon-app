@@ -167,12 +167,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                         
                                                         
                                                     } else {
-                                                        print("Signup -> login failed")
+                                                        //print("Signup -> login failed")
+                                                        let alertController = UIAlertController(title: "Error signing in!", message:
+                                                            "Try signing in with your new account.", preferredStyle: UIAlertControllerStyle.Alert)
+                                                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                                                        
+                                                        self.presentViewController(alertController, animated: true, completion: nil)
                                                     }
                                                 }
                                             } else {
-                                                print("Signup failed")
-                                                print(error?.localizedFailureReason)
+                                                let alertController = UIAlertController(title: "Error signing up!", message:
+                                                    (error?.localizedDescription)!, preferredStyle: UIAlertControllerStyle.Alert)
+                                                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                                                
+                                                self.presentViewController(alertController, animated: true, completion: nil)
+                                                
                                             }
                                         }
         }
